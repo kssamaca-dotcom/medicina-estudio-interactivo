@@ -66,6 +66,9 @@ function switchTab(tabId) {
   if ((tabId === 'inicio' || tabId === 'repaso') && typeof updateGlobalMetricsUI === 'function') {
     updateGlobalMetricsUI();
   }
+  if ((tabId === 'inicio' || tabId === 'casos' || tabId === 'repaso') && typeof updateCasesListProgressBadges === 'function') {
+    updateCasesListProgressBadges();
+  }
 }
 
 // Specialty filter logic for Casos screen

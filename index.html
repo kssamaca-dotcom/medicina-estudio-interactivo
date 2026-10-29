@@ -224,14 +224,14 @@
           <span class="material-symbols-outlined text-on-surface-variant text-lg shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
         </button>
 
-        <button data-target-tab="casos" class="relative group flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest text-on-surface shadow-md hover:shadow-lg active:scale-[0.98] transition-all">
+        <button onclick="openCaseFromHome('case_142')" class="relative group flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest text-on-surface shadow-md hover:shadow-lg active:scale-[0.98] transition-all">
           <div class="flex items-center gap-2.5 min-w-0">
             <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-2xl">play_circle</span>
             </div>
             <div class="text-left min-w-0">
               <span class="block text-sm text-secondary truncate font-bold">Caso Activo</span>
-              <span class="block text-xs text-on-surface-variant truncate">Paso 3 de 5</span>
+              <span id="home-active-case-stage-label" class="block text-xs text-on-surface-variant truncate">Fase 1 de 4</span>
             </div>
           </div>
           <span class="material-symbols-outlined text-on-surface-variant text-lg shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
@@ -379,7 +379,7 @@
                 <span class="pl-2 text-xs text-on-surface-variant">estudiantes lo resolvieron</span>
               </div>
               
-              <button data-target-tab="casos" class="inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:bg-primary-container active:scale-95 transition-all shrink-0">
+              <button onclick="openCaseFromHome('case_cardiologia')" class="inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:bg-primary-container active:scale-95 transition-all shrink-0">
                 <span>Iniciar</span>
                 <span class="material-symbols-outlined text-base">arrow_forward</span>
               </button>
@@ -418,376 +418,602 @@
     <!-- ========================================== -->
     <section id="view-casos" class="view-screen hidden flex flex-col w-full pb-6">
       
-      <!-- Specialty Chips Carousel -->
-      <section class="w-full pt-3 pb-2 px-margin">
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          <button class="specialty-filter active px-4 py-1.5 rounded-full bg-primary text-on-primary text-xs font-semibold shrink-0 shadow-sm transition-all duration-150 transform active:scale-95 flex items-center gap-1.5" data-filter="all">
-            <span class="material-symbols-outlined text-base">apps</span>
-            <span>Todos</span>
-          </button>
-          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="urgencias">
-            <span class="material-symbols-outlined text-base text-error">emergency</span>
-            <span>Urgencias</span>
-          </button>
-          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="cardiologia">
-            <span class="material-symbols-outlined text-base text-primary">cardiology</span>
-            <span>Cardiología</span>
-          </button>
-          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="neurologia">
-            <span class="material-symbols-outlined text-base text-tertiary">neurology</span>
-            <span>Neurología</span>
-          </button>
-          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="pediatria">
-            <span class="material-symbols-outlined text-base text-secondary">child_care</span>
-            <span>Pediatría</span>
-          </button>
-          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="infecciosas">
-            <span class="material-symbols-outlined text-base text-on-secondary-container">microbiology</span>
-            <span>Infecciosas</span>
-          </button>
-        </div>
-      </section>
+      <!-- ========================================== -->
+      <!-- 2.1 LISTADO GENERAL DE CASOS CLÍNICOS      -->
+      <!-- ========================================== -->
+      <div id="cases-list-view" class="flex flex-col w-full">
+        <!-- Specialty Chips Carousel -->
+        <section class="w-full pt-3 pb-2 px-margin">
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+            <button class="specialty-filter active px-4 py-1.5 rounded-full bg-primary text-on-primary text-xs font-semibold shrink-0 shadow-sm transition-all duration-150 transform active:scale-95 flex items-center gap-1.5" data-filter="all">
+              <span class="material-symbols-outlined text-base">apps</span>
+              <span>Todos</span>
+            </button>
+            <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="urgencias">
+              <span class="material-symbols-outlined text-base text-error">emergency</span>
+              <span>Urgencias</span>
+            </button>
+            <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="cardiologia">
+              <span class="material-symbols-outlined text-base text-primary">cardiology</span>
+              <span>Cardiología</span>
+            </button>
+            <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="neurologia">
+              <span class="material-symbols-outlined text-base text-tertiary">neurology</span>
+              <span>Neurología</span>
+            </button>
+            <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="pediatria">
+              <span class="material-symbols-outlined text-base text-secondary">child_care</span>
+              <span>Pediatría</span>
+            </button>
+            <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="infecciosas">
+              <span class="material-symbols-outlined text-base text-on-secondary-container">microbiology</span>
+              <span>Infecciosas</span>
+            </button>
+          </div>
+        </section>
 
-      <!-- Active Case Banner -->
-      <section class="px-margin mt-2">
-        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary-container to-tertiary text-on-primary p-space-md shadow-md">
-          <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-surface-container-lowest/5 rounded-full blur-2xl pointer-events-none"></div>
-          <div class="relative z-10 flex flex-col gap-3">
-            <div class="flex items-center justify-between">
-              <div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-md px-2.5 py-1 rounded-full text-on-primary text-xs tracking-wide uppercase font-semibold">
-                <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span>
-                <span>En Consulta Activa</span>
+        <!-- Active Case Banner (Connected to case_142) -->
+        <section class="px-margin mt-2">
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary-container to-tertiary text-on-primary p-space-md shadow-md">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-surface-container-lowest/5 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-md px-2.5 py-1 rounded-full text-on-primary text-xs tracking-wide uppercase font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span>
+                  <span>En Consulta Activa</span>
+                </div>
+                <span class="text-xs text-primary-fixed-dim font-medium">ID: #142</span>
               </div>
-              <span class="text-xs text-primary-fixed-dim font-medium">ID: #142</span>
+
+              <div>
+                <h2 class="text-lg font-bold text-on-primary leading-tight line-clamp-2">
+                  Varón de 45 años con cefalea intensa holocraneal en trueno y rigidez de nuca
+                </h2>
+                <p class="mt-1 text-xs text-primary-fixed flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">schedule</span>
+                  <span>Simulador interactivo • Caso prioritario</span>
+                </p>
+              </div>
+
+              <div class="bg-surface-container-lowest/10 rounded-xl p-2.5 backdrop-blur-sm">
+                <div class="flex items-center justify-between text-on-primary text-xs mb-1.5">
+                  <span id="active-case-stage-label" class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-secondary-fixed">biotech</span>
+                    <span>Fase 1 de 4: Evaluación Inicial y Sospecha</span>
+                  </span>
+                  <span id="active-case-progress-percent" class="font-bold text-secondary-fixed">25%</span>
+                </div>
+                <div class="w-full bg-surface-container-lowest/20 h-1.5 rounded-full overflow-hidden">
+                  <div id="active-case-progress-bar" class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 25%;"></div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between pt-1 gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-lowest/10 text-on-primary">
+                    <span class="material-symbols-outlined text-base">radiology</span>
+                  </span>
+                  <div class="text-left">
+                    <span class="block text-[10px] text-primary-fixed">Sospecha</span>
+                    <span class="text-xs text-on-primary font-semibold leading-none">HSA espontánea</span>
+                  </div>
+                </div>
+                <button onclick="openCase('case_142')" class="inline-flex items-center justify-center gap-1.5 px-4 h-10 rounded-xl bg-secondary-container text-on-secondary-container text-xs font-bold shadow-sm hover:brightness-105 active:scale-95 transition-all">
+                  <span>Continuar Caso</span>
+                  <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section Header & Filter Stats -->
+        <section class="px-margin mt-6 flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-bold text-on-surface">Casos Disponibles</h3>
+            <p class="text-xs text-on-surface-variant">Simulador con retroalimentación bayesiana inmediata</p>
+          </div>
+          <div class="flex items-center gap-1 bg-surface-container-low px-2.5 py-1 rounded-full text-on-surface-variant">
+            <span class="material-symbols-outlined text-base text-secondary">verified</span>
+            <span class="text-xs font-bold text-on-surface">4 listos</span>
+          </div>
+        </section>
+
+        <!-- Interactive Clinical Cases List -->
+        <section class="px-margin mt-3 flex flex-col gap-3.5" id="cases-container">
+          
+          <!-- Case 1: Pediatria -->
+          <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="pediatria" data-case-id="case_pediatria">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed/30 text-on-secondary-fixed text-xs font-semibold">
+                  <span class="material-symbols-outlined text-xs">child_care</span>
+                  Pediatría
+                </span>
+                <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+                  <span class="material-symbols-outlined text-xs text-secondary">signal_cellular_alt_2_bar</span>
+                  Media
+                </span>
+                <div class="case-status-badge"></div>
+              </div>
+              <div class="flex items-center gap-1 text-xs text-secondary font-bold">
+                <span class="material-symbols-outlined text-sm">thumb_up</span>
+                <span>84% éxito</span>
+              </div>
             </div>
 
             <div>
-              <h2 class="text-lg font-bold text-on-primary leading-tight line-clamp-2">
-                Varón de 45 años con cefalea intensa holocraneal en trueno y rigidez de nuca
-              </h2>
-              <p class="mt-1 text-xs text-primary-fixed flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sm">schedule</span>
-                <span>Última toma de decisiones hace 20 min</span>
+              <h4 class="text-sm font-semibold text-on-surface leading-snug">
+                Lactante de 8 meses con fiebre alta y exantema súbito post-defervescencia
+              </h4>
+              <p class="text-xs text-on-surface-variant mt-1">
+                Presenta caída térmica abrupta tras 72h con brote eritematoso rosado máculo-papular en tronco que respeta cara.
               </p>
             </div>
 
-            <div class="bg-surface-container-lowest/10 rounded-xl p-2.5 backdrop-blur-sm">
-              <div class="flex items-center justify-between text-on-primary text-xs mb-1.5">
-                <span class="flex items-center gap-1">
-                  <span class="material-symbols-outlined text-sm text-secondary-fixed">biotech</span>
-                  <span>Fase 2 de 4: Interpretación de Neuroimagen (TC)</span>
+            <!-- Vital Signs Triage Badge Bar -->
+            <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
+                <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                  142 lpm
                 </span>
-                <span class="font-bold text-secondary-fixed">50%</span>
               </div>
-              <div class="w-full bg-surface-container-lowest/20 h-1.5 rounded-full overflow-hidden">
-                <div class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 50%;"></div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
+                <span class="text-xs font-bold text-on-surface">85/55</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
+                <span class="text-xs font-bold text-secondary">98%</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">Temp</span>
+                <span class="text-xs font-bold text-error">37.4°C</span>
               </div>
             </div>
 
-            <div class="flex items-center justify-between pt-1 gap-2">
-              <div class="flex items-center gap-2">
-                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-lowest/10 text-on-primary">
-                  <span class="material-symbols-outlined text-base">radiology</span>
-                </span>
-                <div class="text-left">
-                  <span class="block text-[10px] text-primary-fixed">Sospecha</span>
-                  <span class="text-xs text-on-primary font-semibold leading-none">HSA espontánea</span>
-                </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-base">timer</span>
+                <span>10 min aprox.</span>
               </div>
-              <button class="inline-flex items-center justify-center gap-1.5 px-4 h-10 rounded-xl bg-secondary-container text-on-secondary-container text-xs font-bold shadow-sm hover:brightness-105 active:scale-95 transition-all">
-                <span>Continuar</span>
+              <button onclick="openCase('case_pediatria')" class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
+                <span>Iniciar Caso</span>
+                <span class="material-symbols-outlined text-base">play_arrow</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Case 2: Neurología -->
+          <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="neurologia" data-case-id="case_neurologia">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-semibold">
+                  <span class="material-symbols-outlined text-xs">neurology</span>
+                  Neurología
+                </span>
+                <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-xs">
+                  <span class="material-symbols-outlined text-xs">priority_high</span>
+                  Media
+                </span>
+                <div class="case-status-badge"></div>
+              </div>
+              <div class="flex items-center gap-1 text-xs text-error font-bold">
+                <span class="material-symbols-outlined text-sm">psychology_alt</span>
+                <span>62% éxito</span>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-on-surface leading-snug">
+                Mujer de 34 años con debilidad muscular progresiva y ptosis vespertina
+              </h4>
+              <p class="text-xs text-on-surface-variant mt-1">
+                Diplopía fluctuante al final de la jornada laboral, dificultad para masticar y test de estimulación repetitiva pendiente.
+              </p>
+            </div>
+
+            <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
+                <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                  76 lpm
+                </span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
+                <span class="text-xs font-bold text-on-surface">118/72</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
+                <span class="text-xs font-bold text-secondary">99%</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">Cap. Vital</span>
+                <span class="text-xs font-bold text-on-surface-variant">Normal</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-base">timer</span>
+                <span>12 min aprox.</span>
+              </div>
+              <button onclick="openCase('case_neurologia')" class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
+                <span>Iniciar Caso</span>
+                <span class="material-symbols-outlined text-base">play_arrow</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Case 3: Cardiología -->
+          <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="cardiologia" data-case-id="case_cardiologia">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed-dim/40 text-on-primary-fixed-variant text-xs font-semibold">
+                  <span class="material-symbols-outlined text-xs">cardiology</span>
+                  Cardiología
+                </span>
+                <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+                  <span class="material-symbols-outlined text-xs text-primary">equalizer</span>
+                  Intermedia
+                </span>
+                <div class="case-status-badge"></div>
+              </div>
+              <div class="flex items-center gap-1 text-xs text-secondary font-bold">
+                <span class="material-symbols-outlined text-sm">thumb_up</span>
+                <span>79% éxito</span>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-on-surface leading-snug">
+                Hombre de 68 años con disnea progresiva y edemas en miembros inferiores
+              </h4>
+              <p class="text-xs text-on-surface-variant mt-1">
+                Ortopnea de 3 almohadas, ingurgitación yugular patológica a 45° y crepitantes bibasales con ritmo de galope R3 audible.
+              </p>
+            </div>
+
+            <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
+                <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                  92 lpm
+                </span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
+                <span class="text-xs font-bold text-on-surface">148/92</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
+                <span class="text-xs font-bold text-error">91%</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">BNP</span>
+                <span class="text-xs font-bold text-error">Elevado</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-base">timer</span>
+                <span>15 min aprox.</span>
+              </div>
+              <button onclick="openCase('case_cardiologia')" class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
+                <span>Iniciar Caso</span>
+                <span class="material-symbols-outlined text-base">play_arrow</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Case 4: Urgencias -->
+          <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="urgencias" data-case-id="case_urgencias">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container text-xs font-semibold">
+                  <span class="material-symbols-outlined text-xs">emergency</span>
+                  Urgencias
+                </span>
+                <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+                  <span class="material-symbols-outlined text-xs text-secondary">signal_cellular_alt_1_bar</span>
+                  Inicial
+                </span>
+                <div class="case-status-badge"></div>
+              </div>
+              <div class="flex items-center gap-1 text-xs text-secondary font-bold">
+                <span class="material-symbols-outlined text-sm">thumb_up</span>
+                <span>91% éxito</span>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-on-surface leading-snug">
+                Joven de 22 años con dolor en fosa ilíaca derecha y signo de Blumberg positivo
+              </h4>
+              <p class="text-xs text-on-surface-variant mt-1">
+                Cronología apendicular clásica de Murphy: inicio periumbilical irradiado a FID con náuseas y defensa abdominal involuntaria.
+              </p>
+            </div>
+
+            <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
+                <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                  98 lpm
+                </span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
+                <span class="text-xs font-bold text-on-surface">122/78</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
+                <span class="text-xs font-bold text-secondary">99%</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[10px] text-on-surface-variant font-medium">Temp</span>
+                <span class="text-xs font-bold text-error">38.1°C</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-base">timer</span>
+                <span>10 min aprox.</span>
+              </div>
+              <button onclick="openCase('case_urgencias')" class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
+                <span>Iniciar Caso</span>
+                <span class="material-symbols-outlined text-base">play_arrow</span>
+              </button>
+            </div>
+          </article>
+        </section>
+
+        <!-- Empty state fallback when filtering has no items -->
+        <div class="hidden px-margin py-10 flex flex-col items-center justify-center text-center" id="empty-state">
+          <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-2">
+            <span class="material-symbols-outlined text-3xl">clinical_notes</span>
+          </div>
+          <p class="text-base font-bold text-on-surface">Sin casos en esta categoría</p>
+          <p class="text-xs text-on-surface-variant max-w-xs mt-1">Explora otra especialidad o selecciona 'Todos' para ver casos de razonamiento clínico disponibles.</p>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- 2.2 SIMULADOR INTERACTIVO DE CASO CLÍNICO  -->
+      <!-- ========================================== -->
+      <div id="case-player-view" class="hidden flex flex-col w-full pb-8">
+        
+        <!-- Navigation Bar / Back button -->
+        <div class="px-margin pt-2 pb-1 flex items-center justify-between">
+          <button onclick="closeCasePlayer()" class="inline-flex items-center gap-1 text-xs font-bold text-primary hover:text-primary-container py-1.5 transition-colors">
+            <span class="material-symbols-outlined text-base">arrow_back</span>
+            <span>Volver a Casos</span>
+          </button>
+          <span class="text-[11px] text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full font-semibold">Simulación de Guardia</span>
+        </div>
+
+        <!-- Tracker Header -->
+        <div class="px-margin py-2 flex flex-col gap-1.5 bg-surface-container-lowest border-y border-surface-container shadow-sm">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              <span id="player-specialty-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-bold">
+                Neurología & Urgencias
+              </span>
+              <span id="player-stage-badge" class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-medium">
+                Fase 1 de 4
+              </span>
+            </div>
+            <span id="player-progress-percent" class="text-xs font-bold text-secondary">25% completado</span>
+          </div>
+          <div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+            <div id="player-progress-bar" class="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-500 ease-out" style="width: 25%;"></div>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="px-margin py-3 flex flex-col gap-3">
+          
+          <!-- Case Title -->
+          <h2 id="player-case-title" class="text-base font-bold text-on-surface leading-snug">
+            Cargando caso clínico...
+          </h2>
+
+          <!-- Patient Summary & Triage Card -->
+          <div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-surface-container flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base text-primary">person</span>
+                <span id="player-patient-name" class="text-xs font-bold text-primary-container">Paciente</span>
+              </div>
+              <span class="text-[10px] text-on-surface-variant uppercase font-semibold">Ficha de Triage</span>
+            </div>
+            <p id="player-patient-background" class="text-xs text-on-surface-variant leading-relaxed">
+              Antecedentes del paciente...
+            </p>
+            
+            <!-- Triage Vitals Bar -->
+            <div class="bg-surface-container-low rounded-lg p-2 flex items-center justify-between gap-1 mt-0.5">
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[9px] text-on-surface-variant font-medium">FC</span>
+                <span id="player-vital-fc" class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                  --
+                </span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[9px] text-on-surface-variant font-medium">PA</span>
+                <span id="player-vital-pa" class="text-xs font-bold text-on-surface">--</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[9px] text-on-surface-variant font-medium">SatO₂</span>
+                <span id="player-vital-sat" class="text-xs font-bold text-secondary">--</span>
+              </div>
+              <div class="w-px h-6 bg-surface-variant"></div>
+              <div class="flex flex-col items-center flex-1">
+                <span class="text-[9px] text-on-surface-variant font-medium">Temp</span>
+                <span id="player-vital-temp" class="text-xs font-bold text-error">--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage Narrative / Evolution Card -->
+          <div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm border border-surface-container flex flex-col gap-2">
+            <div class="flex items-center gap-1 text-primary text-xs font-bold uppercase tracking-wider">
+              <span class="material-symbols-outlined text-base">emergency</span>
+              <span id="player-stage-title">Fase 1: Evaluación Inicial</span>
+            </div>
+            <p id="player-scenario-text" class="text-xs text-on-surface leading-relaxed">
+              Cargando evolución de la fase...
+            </p>
+            <div class="bg-surface-container-low p-2.5 rounded-lg mt-1 border-l-4 border-primary">
+              <p id="player-question-text" class="text-xs font-bold text-on-surface leading-snug">
+                ¿Cuál es la conducta diagnóstica indicada?
+              </p>
+            </div>
+          </div>
+
+          <!-- 4 Multiple Choice Options for this Stage -->
+          <div id="player-options-container" class="flex flex-col gap-2.5">
+            <!-- Dynamically populated via cases.js -->
+          </div>
+
+          <!-- Clinical Feedback Card (Revealed upon selection) -->
+          <article id="player-feedback-card" class="hidden bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md border border-surface-container transition-all duration-300">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">auto_stories</span>
+                <h3 class="text-sm text-on-surface font-bold">Fundamento Clínico de la Decisión</h3>
+              </div>
+              <span id="player-evidence-badge" class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
+                Guías Clínicas
+              </span>
+            </div>
+
+            <div class="flex flex-col gap-1 p-2.5 rounded-lg bg-surface-container-low">
+              <div class="flex items-center gap-1 text-primary text-xs font-bold">
+                <span class="material-symbols-outlined text-sm">verified</span>
+                <span>Análisis de la Conducta Médica</span>
+              </div>
+              <p id="player-explanation-text" class="text-xs text-on-surface-variant leading-relaxed">
+                Explicación fisiopatológica...
+              </p>
+            </div>
+
+            <div class="flex items-start gap-2 p-2.5 rounded-lg bg-secondary-container/25">
+              <div class="p-1 rounded-full bg-secondary-container text-on-secondary-container mt-0.5 flex-shrink-0">
+                <span class="material-symbols-outlined text-base">lightbulb</span>
+              </div>
+              <div class="flex flex-col gap-0.5">
+                <span class="text-xs font-bold text-on-secondary-container">Perla de Guardia (Clinical Pearl)</span>
+                <p id="player-pearl-text" class="text-xs text-on-surface-variant leading-snug">
+                  Perla práctica...
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bottom Action Buttons -->
+          <div class="flex flex-col gap-2 pt-1 pb-4">
+            <div class="flex items-center gap-2">
+              <button id="player-consult-tutor-btn" class="flex-1 min-h-[46px] px-3 bg-surface-container-lowest text-primary rounded-xl text-xs font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all active:scale-[0.98] border border-surface-container" type="button">
+                <span class="material-symbols-outlined text-lg text-primary">smart_toy</span>
+                <span>Consultar Tutor</span>
+              </button>
+              <button id="player-next-btn" onclick="handleNextCaseStage()" class="flex-[1.3] min-h-[46px] px-4 bg-primary text-on-primary rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" type="button">
+                <span>Continuar a Siguiente Fase</span>
                 <span class="material-symbols-outlined text-lg">arrow_forward</span>
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section Header & Filter Stats -->
-      <section class="px-margin mt-6 flex items-center justify-between">
-        <div>
-          <h3 class="text-base font-bold text-on-surface">Casos Disponibles</h3>
-          <p class="text-xs text-on-surface-variant">Simulador con retroalimentación bayesiana inmediata</p>
-        </div>
-        <div class="flex items-center gap-1 bg-surface-container-low px-2.5 py-1 rounded-full text-on-surface-variant">
-          <span class="material-symbols-outlined text-base text-secondary">verified</span>
-          <span class="text-xs font-bold text-on-surface">4 listos</span>
-        </div>
-      </section>
-
-      <!-- Interactive Clinical Cases List -->
-      <section class="px-margin mt-3 flex flex-col gap-3.5" id="cases-container">
-        
-        <!-- Case 1: Pediatria -->
-        <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="pediatria">
-          <div class="flex items-start justify-between gap-2">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed/30 text-on-secondary-fixed text-xs font-semibold">
-                <span class="material-symbols-outlined text-xs">child_care</span>
-                Pediatría
-              </span>
-              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
-                <span class="material-symbols-outlined text-xs text-secondary">signal_cellular_alt_2_bar</span>
-                Media
-              </span>
-            </div>
-            <div class="flex items-center gap-1 text-xs text-secondary font-bold">
-              <span class="material-symbols-outlined text-sm">thumb_up</span>
-              <span>84% éxito</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-semibold text-on-surface leading-snug">
-              Lactante de 8 meses con fiebre alta y exantema súbito post-defervescencia
-            </h4>
-            <p class="text-xs text-on-surface-variant mt-1">
-              Presenta caída térmica abrupta tras 72h con brote eritematoso rosado máculo-papular en tronco que respeta cara.
+            <p class="text-[11px] text-center text-on-surface-variant">
+              Toca una opción para evaluar la conducta y desbloquear la siguiente fase
             </p>
           </div>
 
-          <!-- Vital Signs Triage Badge Bar -->
-          <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
-              <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-xs text-error">favorite</span>
-                142 lpm
-              </span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
-              <span class="text-xs font-bold text-on-surface">85/55</span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
-              <span class="text-xs font-bold text-secondary">98%</span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">Temp</span>
-              <span class="text-xs font-bold text-error">37.4°C</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-1">
-            <div class="flex items-center gap-1 text-xs text-on-surface-variant">
-              <span class="material-symbols-outlined text-base">timer</span>
-              <span>12 min aprox.</span>
-            </div>
-            <button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
-              <span>Iniciar Caso</span>
-              <span class="material-symbols-outlined text-base">play_arrow</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- Case 2: Neurología -->
-        <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="neurologia">
-          <div class="flex items-start justify-between gap-2">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-semibold">
-                <span class="material-symbols-outlined text-xs">neurology</span>
-                Neurología
-              </span>
-              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-xs">
-                <span class="material-symbols-outlined text-xs">priority_high</span>
-                Avanzada
-              </span>
-            </div>
-            <div class="flex items-center gap-1 text-xs text-error font-bold">
-              <span class="material-symbols-outlined text-sm">psychology_alt</span>
-              <span>62% éxito</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-semibold text-on-surface leading-snug">
-              Mujer de 34 años con debilidad muscular progresiva y ptosis vespertina
-            </h4>
-            <p class="text-xs text-on-surface-variant mt-1">
-              Diplopía fluctuante al final de la jornada laboral, dificultad para masticar y test de estimulación repetitiva pendiente.
-            </p>
-          </div>
-
-          <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
-              <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-xs text-error">favorite</span>
-                76 lpm
-              </span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
-              <span class="text-xs font-bold text-on-surface">118/72</span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
-              <span class="text-xs font-bold text-secondary">99%</span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">Cap. Vital</span>
-              <span class="text-xs font-bold text-on-surface-variant">Normal</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-1">
-            <div class="flex items-center gap-1 text-xs text-on-surface-variant">
-              <span class="material-symbols-outlined text-base">timer</span>
-              <span>18 min aprox.</span>
-            </div>
-            <button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
-              <span>Iniciar Caso</span>
-              <span class="material-symbols-outlined text-base">play_arrow</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- Case 3: Cardiología -->
-        <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="cardiologia">
-          <div class="flex items-start justify-between gap-2">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed-dim/40 text-on-primary-fixed-variant text-xs font-semibold">
-                <span class="material-symbols-outlined text-xs">cardiology</span>
-                Cardiología
-              </span>
-              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
-                <span class="material-symbols-outlined text-xs text-primary">equalizer</span>
-                Intermedia
-              </span>
-            </div>
-            <div class="flex items-center gap-1 text-xs text-secondary font-bold">
-              <span class="material-symbols-outlined text-sm">thumb_up</span>
-              <span>79% éxito</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-semibold text-on-surface leading-snug">
-              Hombre de 68 años con disnea progresiva y edemas en miembros inferiores
-            </h4>
-            <p class="text-xs text-on-surface-variant mt-1">
-              Ortopnea de 3 almohadas, ingurgitación yugular patológica a 45° y crepitantes bibasales con ritmo de galope R3 audible.
-            </p>
-          </div>
-
-          <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
-              <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-xs text-error">favorite</span>
-                92 lpm
-              </span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
-              <span class="text-xs font-bold text-on-surface">148/92</span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
-              <span class="text-xs font-bold text-error">91%</span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">BNP</span>
-              <span class="text-xs font-bold text-error">Elevado</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-1">
-            <div class="flex items-center gap-1 text-xs text-on-surface-variant">
-              <span class="material-symbols-outlined text-base">timer</span>
-              <span>15 min aprox.</span>
-            </div>
-            <button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
-              <span>Iniciar Caso</span>
-              <span class="material-symbols-outlined text-base">play_arrow</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- Case 4: Urgencias -->
-        <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="urgencias">
-          <div class="flex items-start justify-between gap-2">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container text-xs font-semibold">
-                <span class="material-symbols-outlined text-xs">emergency</span>
-                Urgencias
-              </span>
-              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
-                <span class="material-symbols-outlined text-xs text-secondary">signal_cellular_alt_1_bar</span>
-                Inicial
-              </span>
-            </div>
-            <div class="flex items-center gap-1 text-xs text-secondary font-bold">
-              <span class="material-symbols-outlined text-sm">thumb_up</span>
-              <span>91% éxito</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-semibold text-on-surface leading-snug">
-              Joven de 22 años con dolor en fosa ilíaca derecha y signo de Blumberg positivo
-            </h4>
-            <p class="text-xs text-on-surface-variant mt-1">
-              Cronología apendicular clásica de Murphy: inicio periumbilical irradiado a FID con náuseas y defensa abdominal involuntaria.
-            </p>
-          </div>
-
-          <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
-              <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
-                <span class="material-symbols-outlined text-xs text-error">favorite</span>
-                98 lpm
-              </span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
-              <span class="text-xs font-bold text-on-surface">122/78</span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
-              <span class="text-xs font-bold text-secondary">99%</span>
-            </div>
-            <div class="w-px h-6 bg-surface-variant"></div>
-            <div class="flex flex-col items-center flex-1">
-              <span class="text-[10px] text-on-surface-variant font-medium">Temp</span>
-              <span class="text-xs font-bold text-error">38.1°C</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-1">
-            <div class="flex items-center gap-1 text-xs text-on-surface-variant">
-              <span class="material-symbols-outlined text-base">timer</span>
-              <span>10 min aprox.</span>
-            </div>
-            <button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
-              <span>Iniciar Caso</span>
-              <span class="material-symbols-outlined text-base">play_arrow</span>
-            </button>
-          </div>
-        </article>
-      </section>
-
-      <!-- Empty state fallback when filtering has no items -->
-      <div class="hidden px-margin py-10 flex flex-col items-center justify-center text-center" id="empty-state">
-        <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-2">
-          <span class="material-symbols-outlined text-3xl">clinical_notes</span>
         </div>
-        <p class="text-base font-bold text-on-surface">Sin casos en esta categoría</p>
-        <p class="text-xs text-on-surface-variant max-w-xs mt-1">Explora otra especialidad o selecciona 'Todos' para ver casos de razonamiento clínico disponibles.</p>
       </div>
+
+      <!-- ========================================== -->
+      <!-- 2.3 PANTALLA DE RESOLUCIÓN DEL CASO        -->
+      <!-- ========================================== -->
+      <div id="case-summary-view" class="hidden px-margin py-space-md flex flex-col gap-space-lg pb-8">
+        
+        <!-- Score & Outcome Card -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-container via-[#1e3a8a] to-[#2563eb] text-on-primary p-space-lg shadow-xl">
+          <div class="relative z-10 flex flex-col items-center text-center gap-space-sm">
+            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider">
+              <span class="material-symbols-outlined text-sm text-secondary-fixed">verified</span>
+              Simulación de Caso Finalizada
+            </span>
+            
+            <div class="relative flex items-center justify-center w-28 h-28 my-1">
+              <svg class="w-28 h-28 -rotate-90" viewBox="0 0 96 96">
+                <circle cx="48" cy="48" fill="transparent" r="40" stroke="rgba(255,255,255,0.2)" stroke-width="8"></circle>
+                <circle id="summary-circle-svg" class="transition-all duration-1000 ease-out" cx="48" cy="48" fill="transparent" r="40" stroke="#6cf8bb" stroke-dasharray="251.32" stroke-dashoffset="0" stroke-linecap="round" stroke-width="8"></circle>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span id="summary-score-percent" class="text-2xl font-bold text-white leading-none">100%</span>
+                <span class="text-[10px] text-primary-fixed mt-0.5">Efectividad</span>
+              </div>
+            </div>
+
+            <div>
+              <h2 id="summary-feedback-header" class="text-lg font-bold text-white">¡Caso Resuelto con Éxito! 🩺</h2>
+              <p id="summary-score-fraction" class="text-sm font-semibold text-secondary-fixed mt-0.5">3 de 3 decisiones acertadas</p>
+              <p id="summary-case-title" class="text-xs text-white/90 font-medium max-w-sm mt-1 leading-snug"></p>
+              <p id="summary-feedback-body" class="text-xs text-white/80 max-w-sm mt-1.5 leading-relaxed">
+                Has completado la toma de decisiones clínicas con criterio fundamentado.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decisions Breakdown Section -->
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-on-surface">Auditoría de Decisiones Tomadas</h3>
+            <span class="text-[11px] text-on-surface-variant">Desglose por fases</span>
+          </div>
+          <div id="summary-breakdown-list" class="flex flex-col gap-2">
+            <!-- Populated via cases.js -->
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col gap-2.5 pt-1">
+          <button onclick="closeCasePlayer()" class="w-full py-3 px-space-md rounded-xl bg-primary text-on-primary text-xs font-bold flex items-center justify-center gap-2 shadow-md active:scale-95 transition-transform" type="button">
+            <span class="material-symbols-outlined text-lg">arrow_back</span>
+            <span>Volver al Catálogo de Casos</span>
+          </button>
+          <button onclick="restartCurrentCase()" class="w-full py-3 px-space-md rounded-xl bg-surface-container-low text-primary text-xs font-semibold flex items-center justify-center gap-2 hover:bg-surface-container transition-colors" type="button">
+            <span class="material-symbols-outlined text-lg">replay</span>
+            <span>Reiniciar este Caso</span>
+          </button>
+        </div>
+
+      </div>
+
     </section>
 
     <!-- ========================================== -->
@@ -1550,6 +1776,8 @@
   <!-- JavaScript Controllers -->
   <script src="js/quiz-data.js"></script>
   <script src="js/quiz.js"></script>
+  <script src="js/cases-data.js"></script>
+  <script src="js/cases.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
