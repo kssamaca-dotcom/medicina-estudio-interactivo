@@ -172,23 +172,23 @@
           <div class="flex items-end justify-between pt-1">
             <div>
               <div class="flex items-baseline gap-1.5">
-                <span class="text-3xl text-white font-bold leading-none">34</span>
-                <span class="text-base text-primary-fixed font-medium">/ 40 preguntas</span>
+                <span id="home-daily-solved" class="text-3xl text-white font-bold leading-none">0</span>
+                <span class="text-base text-primary-fixed font-medium">/ 10 preguntas</span>
               </div>
-              <p class="text-xs text-white/80 mt-1">85% completado • ¡Solo 6 para la meta!</p>
+              <p id="home-daily-subtitle" class="text-xs text-white/80 mt-1">Inicia tu cuestionario para registrar tu progreso real</p>
             </div>
             
             <div class="relative flex items-center justify-center w-14 h-14 shrink-0">
               <svg class="w-14 h-14 -rotate-90 transform" viewBox="0 0 48 48">
                 <circle cx="24" cy="24" fill="none" r="20" stroke="rgba(255,255,255,0.2)" stroke-width="4.5"></circle>
-                <circle class="transition-all duration-1000 ease-out" cx="24" cy="24" fill="none" r="20" stroke="#6cf8bb" stroke-dasharray="125.6" stroke-dashoffset="18.8" stroke-linecap="round" stroke-width="4.5"></circle>
+                <circle id="home-daily-svg-circle" class="transition-all duration-1000 ease-out" cx="24" cy="24" fill="none" r="20" stroke="#6cf8bb" stroke-dasharray="125.6" stroke-dashoffset="125.6" stroke-linecap="round" stroke-width="4.5"></circle>
               </svg>
-              <span class="absolute text-xs font-bold text-white">85%</span>
+              <span id="home-daily-percent" class="absolute text-xs font-bold text-white">0%</span>
             </div>
           </div>
 
           <div class="w-full bg-white/20 h-2 rounded-full overflow-hidden">
-            <div class="bg-secondary-container h-full rounded-full transition-all duration-700" style="width: 85%;"></div>
+            <div id="home-daily-progress-bar" class="bg-secondary-container h-full rounded-full transition-all duration-700" style="width: 0%;"></div>
           </div>
 
           <div class="pt-2 flex items-center justify-between text-white/90">
@@ -198,12 +198,12 @@
               </div>
               <div>
                 <span class="block text-[10px] text-primary-fixed uppercase tracking-wider font-semibold">Acierto Global</span>
-                <span class="text-lg font-bold leading-tight text-white">78.4%</span>
+                <span id="home-global-accuracy" class="text-lg font-bold leading-tight text-white">--%</span>
               </div>
             </div>
             <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/20 text-secondary-fixed text-xs font-semibold">
               <span class="material-symbols-outlined text-sm">trending_up</span>
-              <span>+3.2% esta semana</span>
+              <span id="home-accuracy-status">Progreso en vivo</span>
             </div>
           </div>
         </div>
@@ -799,141 +799,75 @@
       <div class="px-margin pt-space-sm pb-space-xs flex flex-col gap-space-sm bg-surface-container-lowest shadow-sm">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-space-xs">
-            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
+            <span id="quiz-specialty-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
               <span class="material-symbols-outlined text-[14px]">cardiology</span>
               Cardiología & Urgencias
             </span>
-            <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+            <span id="quiz-difficulty-badge" class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-medium">
               Dificultad: Media
             </span>
           </div>
           <div class="flex items-center gap-space-xs text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full">
             <span class="material-symbols-outlined text-[16px] text-primary">timer</span>
-            <span class="text-xs font-bold tabular-nums text-on-surface" id="quiz-timer">01:24</span>
+            <span class="text-xs font-bold tabular-nums text-on-surface" id="quiz-timer">00:00</span>
           </div>
         </div>
 
         <!-- Progress Info & Linear Bar -->
         <div class="flex flex-col gap-1.5 pb-1">
           <div class="flex items-center justify-between text-on-surface-variant text-xs">
-            <span class="text-on-surface font-bold">Pregunta 7 <span class="font-normal text-on-surface-variant">de 20</span></span>
-            <span class="text-xs text-secondary font-semibold">35% completado</span>
+            <span id="quiz-progress-text" class="text-on-surface font-bold">Pregunta 1 <span class="font-normal text-on-surface-variant">de 10</span></span>
+            <span id="quiz-progress-percent" class="text-xs text-secondary font-semibold">10% completado</span>
           </div>
           <div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
-            <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-[35%] transition-all duration-500 ease-out"></div>
+            <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-[10%] transition-all duration-500 ease-out"></div>
           </div>
         </div>
       </div>
 
-      <!-- Main Content Space -->
-      <div class="px-margin py-space-md flex flex-col gap-space-lg">
+      <!-- ACTIVE QUIZ CONTAINER -->
+      <div id="quiz-active-view" class="px-margin py-space-md flex flex-col gap-space-lg">
         
         <!-- Clinical Case Prompt Card -->
         <section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
           <div class="flex items-center gap-space-xs text-primary text-xs font-bold uppercase tracking-wider">
             <span class="material-symbols-outlined text-lg">medical_information</span>
-            <span>CASO CLÍNICO #204</span>
+            <span id="quiz-case-id">CASO CLÍNICO #204</span>
           </div>
-          <p class="text-on-surface text-sm leading-relaxed">
-            Una mujer de 62 años con antecedentes de hipertensión arterial acude a urgencias por palpitaciones de inicio súbito y mareo leve. La presión arterial es de 118/76 mmHg. El electrocardiograma muestra una taquicardia de complejo estrecho regular a 170 lpm, sin ondas P visibles identificables. Las maniobras vagales no logran revertir el ritmo.
+          <p id="quiz-prompt-text" class="text-on-surface text-sm leading-relaxed">
+            Cargando viñeta clínica...
           </p>
           <div class="p-space-sm rounded-lg bg-surface-container-low mt-1">
-            <p class="text-on-surface text-sm font-semibold">
-              ¿Cuál es el tratamiento farmacológico de primera elección en este escenario clínico?
+            <p id="quiz-question-text" class="text-on-surface text-sm font-semibold">
+              Cargando pregunta...
             </p>
           </div>
         </section>
 
-        <!-- Multiple Choice Options -->
-        <section aria-label="Opciones de respuesta" class="flex flex-col gap-space-sm" role="radiogroup">
-          <!-- Option A -->
-          <button class="w-full text-left bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm transition-transform active:scale-[0.99]" type="button">
-            <div class="flex items-start gap-space-sm min-w-0">
-              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center text-xs font-bold">
-                A
-              </span>
-              <span class="text-on-surface text-sm leading-snug">
-                Amiodarona 300 mg i.v. en bolo lento
-              </span>
-            </div>
-            <span class="w-5 h-5 rounded-full bg-surface-container flex-shrink-0"></span>
-          </button>
-
-          <!-- Option B (Correct) -->
-          <button class="w-full text-left bg-secondary-container/20 border-2 border-secondary p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm transition-transform active:scale-[0.99]" type="button">
-            <div class="flex items-start gap-space-sm min-w-0">
-              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-xs font-bold shadow-sm">
-                B
-              </span>
-              <div class="flex flex-col min-w-0">
-                <span class="text-on-surface text-sm font-semibold leading-snug">
-                  Adenosina 6 mg i.v. en bolo rápido seguido de lavado salino
-                </span>
-                <span class="text-xs text-secondary font-bold mt-0.5 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[13px]">check_circle</span>
-                  Respuesta Correcta de Primera Línea
-                </span>
-              </div>
-            </div>
-            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
-              <span class="material-symbols-outlined text-[16px] font-bold">check</span>
-            </span>
-          </button>
-
-          <!-- Option C -->
-          <button class="w-full text-left bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm transition-transform active:scale-[0.99]" type="button">
-            <div class="flex items-start gap-space-sm min-w-0">
-              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center text-xs font-bold">
-                C
-              </span>
-              <span class="text-on-surface text-sm leading-snug">
-                Digoxina 0.5 mg i.v. en infusión
-              </span>
-            </div>
-            <span class="w-5 h-5 rounded-full bg-surface-container flex-shrink-0"></span>
-          </button>
-
-          <!-- Option D -->
-          <button class="w-full text-left bg-error-container/30 border border-error/40 p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm transition-transform active:scale-[0.99]" type="button">
-            <div class="flex items-start gap-space-sm min-w-0">
-              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-error text-on-error flex items-center justify-center text-xs font-bold shadow-sm">
-                D
-              </span>
-              <div class="flex flex-col min-w-0">
-                <span class="text-on-surface text-sm leading-snug">
-                  Verapamilo 5 mg i.v.
-                </span>
-                <span class="text-xs text-error font-bold mt-0.5 flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[13px]">cancel</span>
-                  Opción de segunda línea (riesgo hipotensión)
-                </span>
-              </div>
-            </div>
-            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-error text-on-error flex items-center justify-center">
-              <span class="material-symbols-outlined text-[16px] font-bold">close</span>
-            </span>
-          </button>
+        <!-- Dynamic Multiple Choice Options Container -->
+        <section id="quiz-options-container" aria-label="Opciones de respuesta" class="flex flex-col gap-space-sm" role="radiogroup">
+          <!-- Dynamically populated via quiz.js -->
         </section>
 
-        <!-- Expanded Clinical Rationale & Pearls -->
-        <article class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+        <!-- Expanded Clinical Rationale & Pearls (Hidden until student answers) -->
+        <article id="quiz-justification-card" class="hidden bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md transition-all duration-300">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary text-2xl">auto_stories</span>
-              <h2 class="text-base text-on-surface font-bold">Justificación Clínica</h2>
+              <h2 class="text-base text-on-surface font-bold">Justificación Fisiopatológica</h2>
             </div>
-            <span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
-              AHA / ESC 2023
+            <span id="quiz-evidence-badge" class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
+              Guías Clínicas
             </span>
           </div>
 
           <div class="flex flex-col gap-1.5 p-space-sm rounded-lg bg-surface-container-low">
             <div class="flex items-center gap-1.5 text-primary text-xs font-bold">
               <span class="material-symbols-outlined text-base">verified</span>
-              <span>¿Por qué es correcta la Adenosina?</span>
+              <span>¿Por qué es correcta esta conducta clínica?</span>
             </div>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
-              En presencia de una <strong class="text-on-surface">taquicardia supraventricular por reentrada nodal (TRIN)</strong> regular y hemodinámicamente estable (PA 118/76 mmHg) refractaria a maniobras vagales, la <strong class="text-on-surface">Adenosina i.v.</strong> es el fármaco de primera elección. Actúa provocando un bloqueo transitorio y selectivo del nodo AV (vida media &lt; 10 s), interrumpiendo el circuito de macro-reentrada de forma segura y diagnóstica.
+            <p id="quiz-justification-text" class="text-xs text-on-surface-variant leading-relaxed">
+              Explicación clínica detallada...
             </p>
           </div>
 
@@ -943,66 +877,107 @@
             </div>
             <div class="flex flex-col gap-0.5">
               <span class="text-xs font-bold text-on-secondary-container">Perla Médica (High-Yield Pearl)</span>
-              <p class="text-xs text-on-surface-variant leading-snug">
-                Administrar siempre por vía intravenosa proximal (fosa antecubital) en bolo ultrarrápido seguido inmediatamente de 20 mL de suero fisiológico y elevación del brazo. El verapamilo es de 2.ª línea debido a mayor riesgo de hipotensión sistémica prolongada.
+              <p id="quiz-pearl-text" class="text-xs text-on-surface-variant leading-snug">
+                Perla mnemotécnica...
               </p>
             </div>
-          </div>
-
-          <!-- Community Retention & Statistics -->
-          <div class="flex flex-col gap-2 pt-1">
-            <div class="flex items-center justify-between text-on-surface-variant text-xs">
-              <span class="flex items-center gap-1 font-semibold text-on-surface">
-                <span class="material-symbols-outlined text-sm text-primary">groups</span>
-                Tasa de acierto de la comunidad
-              </span>
-              <span class="font-bold text-secondary text-xs">68% de acierto</span>
-            </div>
-            <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden flex">
-              <div class="h-full bg-secondary rounded-l-full w-[68%]" title="Adenosina (68%)"></div>
-              <div class="h-full bg-error/70 w-[18%]" title="Verapamilo (18%)"></div>
-              <div class="h-full bg-surface-dim flex-1 rounded-r-full" title="Otras (14%)"></div>
-            </div>
-            <div class="flex items-center justify-between text-on-surface-variant text-[11px] px-0.5">
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> Adenosina (68%)</span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error/70 inline-block"></span> Verapamilo (18%)</span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-dim inline-block"></span> Otros (14%)</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-2 border-t border-surface-container">
-            <span class="text-xs text-on-surface-variant">Próximo repaso espaciado:</span>
-            <span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary text-xs font-semibold">
-              En 3 días (Algoritmo SM-2)
-            </span>
           </div>
         </article>
 
         <!-- Bottom Actions -->
         <div class="flex flex-col gap-space-sm pt-space-xs pb-space-lg">
           <div class="flex items-center gap-space-sm">
-            <button data-target-tab="tutor-ia" class="flex-1 min-h-[48px] px-space-sm bg-surface-container-lowest text-primary rounded-xl text-xs font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" type="button">
+            <button id="quiz-consult-tutor-btn" class="flex-1 min-h-[48px] px-space-sm bg-surface-container-lowest text-primary rounded-xl text-xs font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" type="button">
               <span class="material-symbols-outlined text-xl text-primary">smart_toy</span>
               <span>Consultar Tutor IA</span>
             </button>
-            <button class="flex-[1.2] min-h-[48px] px-space-md bg-primary text-on-primary rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" type="button">
+            <button id="quiz-next-btn" onclick="handleNextQuestion()" class="flex-[1.2] min-h-[48px] px-space-md bg-primary text-on-primary rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" type="button">
               <span>Siguiente Pregunta</span>
               <span class="material-symbols-outlined text-xl">arrow_forward</span>
             </button>
           </div>
           <div class="flex items-center justify-center gap-space-lg pt-1">
-            <button class="inline-flex items-center gap-1 text-on-surface-variant text-xs hover:text-primary transition-colors" type="button">
-              <span class="material-symbols-outlined text-sm">bookmark_border</span>
-              <span>Guardar en Flashcards</span>
-            </button>
-            <span class="w-1 h-1 rounded-full bg-surface-dim"></span>
-            <button class="inline-flex items-center gap-1 text-on-surface-variant text-xs hover:text-error transition-colors" type="button">
-              <span class="material-symbols-outlined text-sm">flag</span>
-              <span>Reportar duda</span>
-            </button>
+            <span class="text-xs text-on-surface-variant flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm text-secondary">tips_and_updates</span>
+              Toca una opción para comprobar y ver la perla médica
+            </span>
           </div>
         </div>
       </div>
+
+      <!-- RESULTS CONTAINER (Hidden by default, shown upon finishing test) -->
+      <div id="quiz-results-view" class="hidden px-margin py-space-md flex flex-col gap-space-lg">
+        
+        <!-- Score Card -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-container via-[#1e3a8a] to-[#2563eb] text-on-primary p-space-lg shadow-xl">
+          <div class="relative z-10 flex flex-col items-center text-center gap-space-sm">
+            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-white text-xs font-semibold uppercase tracking-wider">
+              <span class="material-symbols-outlined text-sm text-secondary-fixed">assignment_turned_in</span>
+              Cuestionario Completado
+            </span>
+            
+            <div class="relative flex items-center justify-center w-28 h-28 my-1">
+              <svg class="w-28 h-28 -rotate-90" viewBox="0 0 96 96">
+                <circle cx="48" cy="48" fill="transparent" r="40" stroke="rgba(255,255,255,0.2)" stroke-width="8"></circle>
+                <circle cx="48" cy="48" fill="transparent" r="40" stroke="#6cf8bb" stroke-dasharray="251.32" stroke-dashoffset="50" stroke-linecap="round" stroke-width="8"></circle>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span id="result-score-percent" class="text-2xl font-bold text-white leading-none">80%</span>
+                <span class="text-[10px] text-primary-fixed mt-0.5">Acierto</span>
+              </div>
+            </div>
+
+            <div>
+              <h2 id="result-feedback-title" class="text-lg font-bold text-white">¡Buen Trabajo! 🩺</h2>
+              <p id="result-score-fraction" class="text-sm font-semibold text-secondary-fixed mt-0.5">8 / 10 aciertos</p>
+              <p id="result-feedback-message" class="text-xs text-white/85 max-w-sm mt-1 leading-relaxed">
+                Has alcanzado el umbral competitivo. Revisa abajo el detalle de tus aciertos y errores.
+              </p>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-3 gap-2 w-full pt-2 border-t border-white/15">
+              <div class="bg-white/10 p-2 rounded-xl flex flex-col items-center">
+                <span class="text-[10px] text-white/70 uppercase">Aciertos</span>
+                <span id="result-correct-count" class="text-base font-bold text-secondary-fixed">8</span>
+              </div>
+              <div class="bg-white/10 p-2 rounded-xl flex flex-col items-center">
+                <span class="text-[10px] text-white/70 uppercase">Errores</span>
+                <span id="result-incorrect-count" class="text-base font-bold text-error-container">2</span>
+              </div>
+              <div class="bg-white/10 p-2 rounded-xl flex flex-col items-center">
+                <span class="text-[10px] text-white/70 uppercase">Tiempo</span>
+                <span id="result-time-spent" class="text-xs font-bold text-white leading-5">03m 45s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question Breakdown Section -->
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-on-surface">Desglose de Preguntas</h3>
+            <span class="text-[11px] text-on-surface-variant">10 preguntas evaluadas</span>
+          </div>
+          <div id="result-breakdown-list" class="flex flex-col gap-2">
+            <!-- Populated via quiz.js -->
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col gap-2.5 pt-1 pb-6">
+          <button id="quiz-restart-btn" onclick="initQuizSession()" class="w-full py-3 px-space-md rounded-xl bg-primary text-on-primary text-xs font-bold flex items-center justify-center gap-2 shadow-md active:scale-95 transition-transform" type="button">
+            <span class="material-symbols-outlined text-lg">replay</span>
+            <span>Iniciar Nuevo Cuestionario</span>
+          </button>
+          <button data-target-tab="repaso" class="w-full py-3 px-space-md rounded-xl bg-surface-container-low text-primary text-xs font-semibold flex items-center justify-center gap-2 hover:bg-surface-container transition-colors" type="button">
+            <span class="material-symbols-outlined text-lg">history_edu</span>
+            <span>Ir a Progreso y Repaso de Errores</span>
+          </button>
+        </div>
+
+      </div>
+
     </section>
 
     <!-- ========================================== -->
@@ -1036,10 +1011,10 @@
             <div class="relative w-24 h-24 shrink-0 flex items-center justify-center">
               <svg class="w-full h-full -rotate-90" viewBox="0 0 96 96">
                 <circle cx="48" cy="48" fill="transparent" r="40" stroke="#f2f4f6" stroke-width="8"></circle>
-                <circle cx="48" cy="48" fill="transparent" r="40" stroke="#006c49" stroke-dasharray="251.32" stroke-dashoffset="58.3" stroke-linecap="round" stroke-width="8"></circle>
+                <circle id="repaso-radial-circle" cx="48" cy="48" fill="transparent" r="40" stroke="#006c49" stroke-dasharray="251.32" stroke-dashoffset="251.32" stroke-linecap="round" stroke-width="8"></circle>
               </svg>
               <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <span class="text-lg font-bold text-on-surface leading-none">76.8%</span>
+                <span id="repaso-global-retention" class="text-lg font-bold text-on-surface leading-none">--%</span>
                 <span class="text-[10px] text-on-surface-variant">Aciertos</span>
               </div>
             </div>
@@ -1051,7 +1026,7 @@
                   <span class="material-symbols-outlined text-lg">check_circle</span>
                 </div>
                 <div class="flex flex-col min-w-0">
-                  <span class="text-sm font-bold text-on-surface leading-tight">1,420</span>
+                  <span id="repaso-total-solved" class="text-sm font-bold text-on-surface leading-tight">0</span>
                   <span class="text-xs text-on-surface-variant truncate">Preguntas resueltas</span>
                 </div>
               </div>
@@ -1060,7 +1035,7 @@
                   <span class="material-symbols-outlined text-lg">clinical_notes</span>
                 </div>
                 <div class="flex flex-col min-w-0">
-                  <span class="text-sm font-bold text-on-surface leading-tight">38</span>
+                  <span id="repaso-total-cases" class="text-sm font-bold text-on-surface leading-tight">0</span>
                   <span class="text-xs text-on-surface-variant truncate">Casos clínicos completos</span>
                 </div>
               </div>
@@ -1572,7 +1547,9 @@
     </div>
   </nav>
 
-  <!-- JavaScript Controller -->
+  <!-- JavaScript Controllers -->
+  <script src="js/quiz-data.js"></script>
+  <script src="js/quiz.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

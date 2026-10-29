@@ -54,6 +54,18 @@ function switchTab(tabId) {
 
   // Scroll to top
   window.scrollTo({ top: 0, behavior: 'instant' });
+
+  // If navigating to Test and quiz is not active, initialize quiz
+  if (tabId === 'test' && typeof initQuizSession === 'function') {
+    if (!userAnswers || userAnswers.length === 0) {
+      initQuizSession();
+    }
+  }
+
+  // If navigating to Inicio or Repaso, refresh metrics
+  if ((tabId === 'inicio' || tabId === 'repaso') && typeof updateGlobalMetricsUI === 'function') {
+    updateGlobalMetricsUI();
+  }
 }
 
 // Specialty filter logic for Casos screen
@@ -259,7 +271,15 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const target = btn.getAttribute('data-target-tab');
-      if (target) switchTab(target);
+      if (target) {
+        if (target === 'test' && typeof initQuizSession === 'function') {
+          // If the quiz is not currently in progress or student came from home CTA, start fresh
+          if (!userAnswers || userAnswers.length === 0 || isQuestionAnswered) {
+            initQuizSession();
+          }
+        }
+        switchTab(target);
+      }
     });
   });
 
@@ -281,4 +301,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set default tab
   switchTab('inicio');
+
+  // Load saved metrics from localStorage if available
+  if (typeof updateGlobalMetricsUI === 'function') {
+    updateGlobalMetricsUI();
+  }
 });
