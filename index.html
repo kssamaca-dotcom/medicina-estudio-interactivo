@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <meta content="MedPulse - Portal Universitario de Educación Médica" name="description"/>
+  <title>MedPulse • Estudio Clínico Interactivo</title>
+  
+  <!-- Fonts & Google Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-dim": "#d8dadc",
+            "inverse-on-surface": "#eff1f3",
+            "tertiary-container": "#00389a",
+            "primary-fixed-dim": "#b6c4ff",
+            "on-background": "#191c1e",
+            "on-tertiary-fixed": "#00174b",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#dbe1ff",
+            "surface": "#f7f9fb",
+            "tertiary": "#00246b",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed-variant": "#003ea8",
+            "inverse-primary": "#b6c4ff",
+            "on-error": "#ffffff",
+            "on-primary-fixed": "#00164e",
+            "primary-container": "#1e3a8a",
+            "inverse-surface": "#2d3133",
+            "primary": "#00236f",
+            "surface-container-highest": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#002113",
+            "on-surface": "#191c1e",
+            "primary-fixed": "#dce1ff",
+            "surface-tint": "#4059aa",
+            "surface-container-low": "#f2f4f6",
+            "secondary-container": "#6cf8bb",
+            "on-primary-fixed-variant": "#264191",
+            "on-tertiary-container": "#8da9ff",
+            "surface-container-high": "#e6e8ea",
+            "tertiary-fixed-dim": "#b4c5ff",
+            "on-primary-container": "#90a8ff",
+            "on-secondary-fixed-variant": "#005236",
+            "surface-container": "#eceef0",
+            "on-surface-variant": "#444651",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed-dim": "#4edea3",
+            "surface-variant": "#e0e3e5",
+            "outline": "#757682",
+            "surface-bright": "#f7f9fb",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#6ffbbe",
+            "on-primary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#00714d",
+            "background": "#f7f9fb",
+            "secondary": "#006c49",
+            "outline-variant": "#c5c5d3"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "margin": "1rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+
+<body class="bg-surface font-sans text-on-surface antialiased flex flex-col min-h-screen">
+
+  <!-- Top App Bar (Unified Header) -->
+  <header class="fixed top-0 left-0 right-0 max-w-xl mx-auto z-50 bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe border-b border-surface-container">
+    <div class="h-16 px-margin flex items-center justify-between gap-space-sm">
+      <div class="flex items-center gap-space-sm min-w-0 cursor-pointer" onclick="switchTab('inicio')">
+        <img alt="MedPulse Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Uc-J0GhivImqWd3gNQPpLO2Ms-lhNldiABe8dTTlUlOMmaKtm4ehukATOKkF9lbR41CYRxhIplCPt4ONi0yQtBTYVECJmFB6FCQZWGP6niUoSY-uRKXri0LmX4zuOO8wL8gEgo52_IvTVqKAK_eH5OgvdbeBzCiwUB5LoskvgI4f8k-cnLEZrP7kgz690rmG11-XVbFXhBtDm-yjASVvbZZ_MEyUfmx98FNsJemtnC"/>
+        <div class="flex flex-col min-w-0">
+          <span class="text-base font-bold text-primary-container leading-none truncate">MedPulse</span>
+          <span id="header-subtitle" class="text-xs text-on-surface-variant truncate font-medium">Inicio</span>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-space-sm shrink-0">
+        <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container shadow-[0_1px_4px_rgba(0,0,0,0.02)]">
+          <span class="material-symbols-outlined text-base leading-none text-error" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+          <span class="text-xs font-bold">14 días</span>
+        </div>
+        <div class="relative flex items-center justify-center p-0.5 rounded-full bg-secondary-container">
+          <img alt="Dra. Sofía" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6bgBYtWpG_w6YefxVbii5GpCI7BoGVl07KkWeH4NacRQXV7r6SSJ-J3EmG_61D0BitQK9aHfcxF6kiebU6iZDuShtnz9EG1dE6Y_aV_C3LDjUg9zXu3KtOiIyYvEsRVi1Em13uolsU5HN91xeg1FRTJ85lvUG2M-obHsVsynAmauAPLwX0w8G0Er2T3U9VgkQCziTqeajUzoRXFaWcveBM55NU1aVi14NMjh-ep0"/>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface max-w-xl mx-auto min-h-screen">
+
+    <!-- University Educational Project Disclaimer -->
+    <div class="mx-margin mt-3 mb-1 p-2.5 rounded-xl bg-primary-fixed/25 border border-primary-fixed/60 text-primary text-xs flex items-center gap-2">
+      <span class="material-symbols-outlined text-base text-primary shrink-0">verified_user</span>
+      <p class="leading-tight">
+        <strong>Proyecto Universitario:</strong> Herramienta académica para estudiantes de Medicina. Casos clínicos simulados no aplicables a pacientes reales.
+      </p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: INICIO (DASHBOARD)                 -->
+    <!-- ========================================== -->
+    <section id="view-inicio" class="view-screen active flex flex-col w-full px-margin pb-space-xl space-y-space-lg">
+      
+      <!-- Greeting Block -->
+      <section class="flex items-center justify-between pt-space-sm">
+        <div class="flex flex-col min-w-0">
+          <h1 class="text-2xl font-bold text-on-surface tracking-tight truncate flex items-center gap-1.5">
+            <span>Hola, Dra. Sofía</span>
+            <span class="inline-block animate-bounce text-xl">👋</span>
+          </h1>
+          <p class="text-xs text-on-surface-variant flex items-center gap-1.5 mt-0.5">
+            <span class="material-symbols-outlined text-sm text-primary">school</span>
+            <span>Semana 18 • Preparación MIR / ENARM / USMLE</span>
+          </p>
+        </div>
+        <button aria-label="Notificaciones" class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container active:scale-95 transition-all shadow-sm shrink-0">
+          <span class="material-symbols-outlined text-xl">notifications</span>
+        </button>
+      </section>
+
+      <!-- Hero Performance & Daily Target Card -->
+      <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-container via-[#1e3a8a] to-[#2563eb] text-on-primary p-space-lg shadow-xl shadow-primary-container/15">
+        <div class="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-secondary-container/20 blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-primary-fixed-dim/15 blur-xl pointer-events-none"></div>
+        
+        <div class="relative z-10 flex flex-col space-y-space-md">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="flex h-2.5 w-2.5 rounded-full bg-secondary-container animate-pulse"></span>
+              <span class="text-xs text-primary-fixed uppercase tracking-wider font-semibold">Objetivo de Hoy</span>
+            </div>
+            <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-white shadow-sm">
+              <span class="material-symbols-outlined text-sm text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+              <span class="text-xs font-bold">14 días seguidos</span>
+            </div>
+          </div>
+
+          <div class="flex items-end justify-between pt-1">
+            <div>
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-3xl text-white font-bold leading-none">34</span>
+                <span class="text-base text-primary-fixed font-medium">/ 40 preguntas</span>
+              </div>
+              <p class="text-xs text-white/80 mt-1">85% completado • ¡Solo 6 para la meta!</p>
+            </div>
+            
+            <div class="relative flex items-center justify-center w-14 h-14 shrink-0">
+              <svg class="w-14 h-14 -rotate-90 transform" viewBox="0 0 48 48">
+                <circle cx="24" cy="24" fill="none" r="20" stroke="rgba(255,255,255,0.2)" stroke-width="4.5"></circle>
+                <circle class="transition-all duration-1000 ease-out" cx="24" cy="24" fill="none" r="20" stroke="#6cf8bb" stroke-dasharray="125.6" stroke-dashoffset="18.8" stroke-linecap="round" stroke-width="4.5"></circle>
+              </svg>
+              <span class="absolute text-xs font-bold text-white">85%</span>
+            </div>
+          </div>
+
+          <div class="w-full bg-white/20 h-2 rounded-full overflow-hidden">
+            <div class="bg-secondary-container h-full rounded-full transition-all duration-700" style="width: 85%;"></div>
+          </div>
+
+          <div class="pt-2 flex items-center justify-between text-white/90">
+            <div class="flex items-center gap-2">
+              <div class="p-1.5 rounded-lg bg-white/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-base text-secondary-fixed">monitoring</span>
+              </div>
+              <div>
+                <span class="block text-[10px] text-primary-fixed uppercase tracking-wider font-semibold">Acierto Global</span>
+                <span class="text-lg font-bold leading-tight text-white">78.4%</span>
+              </div>
+            </div>
+            <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/20 text-secondary-fixed text-xs font-semibold">
+              <span class="material-symbols-outlined text-sm">trending_up</span>
+              <span>+3.2% esta semana</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Action Buttons -->
+      <section class="grid grid-cols-2 gap-space-sm">
+        <button data-target-tab="test" class="relative group flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest text-on-surface shadow-md hover:shadow-lg active:scale-[0.98] transition-all">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-2xl">bolt</span>
+            </div>
+            <div class="text-left min-w-0">
+              <span class="block text-sm text-primary-container truncate font-bold">10 Preguntas</span>
+              <span class="block text-xs text-on-surface-variant truncate">Test flash • 6 min</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-on-surface-variant text-lg shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+        </button>
+
+        <button data-target-tab="casos" class="relative group flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest text-on-surface shadow-md hover:shadow-lg active:scale-[0.98] transition-all">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-2xl">play_circle</span>
+            </div>
+            <div class="text-left min-w-0">
+              <span class="block text-sm text-secondary truncate font-bold">Caso Activo</span>
+              <span class="block text-xs text-on-surface-variant truncate">Paso 3 de 5</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-on-surface-variant text-lg shrink-0 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+        </button>
+      </section>
+
+      <!-- Study Areas (Áreas de Estudio) -->
+      <section class="flex flex-col space-y-space-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-xl">category</span>
+            <h2 class="text-lg font-bold text-on-surface tracking-tight">Áreas de Estudio</h2>
+          </div>
+          <button data-target-tab="repaso" class="text-xs font-semibold text-primary-container hover:text-primary transition-colors flex items-center gap-0.5">
+            <span>Ver todas</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-space-sm">
+          <!-- Cardiología -->
+          <div data-target-tab="test" class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-3 cursor-pointer active:scale-[0.99]">
+            <div class="flex items-start justify-between">
+              <div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-xl">cardiology</span>
+              </div>
+              <span class="text-xs font-bold text-primary-container bg-primary-fixed/60 px-2 py-0.5 rounded-full">82%</span>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-on-surface truncate">Cardiología</h3>
+              <p class="text-xs text-on-surface-variant mt-0.5">142 preguntas rep.</p>
+            </div>
+            <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+              <div class="bg-primary h-full rounded-full" style="width: 82%;"></div>
+            </div>
+          </div>
+
+          <!-- Farmacología -->
+          <div data-target-tab="repaso" class="relative p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-3 cursor-pointer active:scale-[0.99] overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-error-container/40 rounded-full blur-xl pointer-events-none"></div>
+            <div class="flex items-start justify-between">
+              <div class="w-9 h-9 rounded-lg bg-error-container flex items-center justify-center text-error">
+                <span class="material-symbols-outlined text-xl">medication</span>
+              </div>
+              <span class="text-xs font-bold text-on-error-container bg-error-container px-2 py-0.5 rounded-full">68%</span>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-on-surface truncate">Farmacología</h3>
+              <span class="inline-block mt-0.5 text-xs text-error font-medium">Refuerzo urgente</span>
+            </div>
+            <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+              <div class="bg-error h-full rounded-full" style="width: 68%;"></div>
+            </div>
+          </div>
+
+          <!-- Neurología -->
+          <div data-target-tab="test" class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-3 cursor-pointer active:scale-[0.99]">
+            <div class="flex items-start justify-between">
+              <div class="w-9 h-9 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                <span class="material-symbols-outlined text-xl">neurology</span>
+              </div>
+              <span class="text-xs font-bold text-tertiary bg-tertiary-fixed/60 px-2 py-0.5 rounded-full">74%</span>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-on-surface truncate">Neurología</h3>
+              <p class="text-xs text-on-surface-variant mt-0.5">98 preguntas rep.</p>
+            </div>
+            <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+              <div class="bg-tertiary-container h-full rounded-full" style="width: 74%;"></div>
+            </div>
+          </div>
+
+          <!-- Pediatría -->
+          <div data-target-tab="casos" class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-3 cursor-pointer active:scale-[0.99]">
+            <div class="flex items-start justify-between">
+              <div class="w-9 h-9 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-xl">child_care</span>
+              </div>
+              <span class="text-xs font-bold text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded-full">88%</span>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-on-surface truncate">Pediatría</h3>
+              <p class="text-xs text-on-surface-variant mt-0.5">115 preguntas rep.</p>
+            </div>
+            <div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+              <div class="bg-secondary h-full rounded-full" style="width: 88%;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clinical Case of the Day -->
+      <section class="flex flex-col space-y-space-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-xl">clinical_notes</span>
+            <h2 class="text-lg font-bold text-on-surface tracking-tight">Caso Clínico del Día</h2>
+          </div>
+          <span class="text-xs text-secondary bg-secondary-container/40 px-2 py-0.5 rounded-full font-semibold">Nuevo</span>
+        </div>
+
+        <div class="overflow-hidden rounded-2xl bg-surface-container-lowest shadow-md flex flex-col transition-all hover:shadow-lg">
+          <div class="relative w-full h-36 bg-surface-container">
+            <img class="w-full h-full object-cover" alt="ECG Isquemia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ4nRRnkV9Ifb2Tm9S1kEmj8v_wkOrGaGGTGI2u3XBgsRG1Ces6P7Yd4t0_9ufilSZ8zed5PdajGfU-R4TIHn6goWyip4dZiNfcaURb62iESDHuCgSl4v2ipqEFMLepU-0jJ0T-LP67oNcmbvWFJ-vxoxe1qiFRsAEZBBgj-CFUZY7emQ_D2_-zBWIc8AFpKO0qCOjh4zpgwFILwse3jdB2mFSpTrC01kgHyM-kgo"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+              <span class="px-2.5 py-0.5 rounded-full bg-error text-white text-xs font-bold flex items-center gap-1 shadow-sm">
+                <span class="material-symbols-outlined text-xs">e911_emergency</span>
+                <span>Urgencias / Cardiología</span>
+              </span>
+              <span class="px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface text-xs font-medium">
+                Intermedio
+              </span>
+            </div>
+          </div>
+          
+          <div class="p-space-md flex flex-col space-y-3">
+            <div>
+              <div class="flex items-center gap-2 text-on-surface-variant text-xs mb-1">
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">timer</span>
+                  <span>8 min estim.</span>
+                </span>
+                <span>•</span>
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">award_star</span>
+                  <span>+50 XP MedPulse</span>
+                </span>
+              </div>
+              <h3 class="text-base text-on-surface font-semibold leading-snug">
+                Varón de 58 años con dolor torácico opresivo de 45 min
+              </h3>
+              <p class="text-xs text-on-surface-variant mt-1 line-clamp-2">
+                Paciente hipertenso y fumador acude con diaforesis profusa, náuseas y dolor irradiado a mandíbula izquierda. Evalúa el algoritmo de reperfusión inmediata.
+              </p>
+            </div>
+
+            <div class="pt-1 flex items-center justify-between gap-space-sm">
+              <div class="flex items-center -space-x-1.5 overflow-hidden py-1">
+                <img alt="Dra. Morales" class="inline-block h-6 w-6 rounded-full ring-2 ring-surface-container-lowest object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCETzxZKDvB8UJkXz-grJVSHf_1r3VnCWqXYFw6WKxL2LxdehhxZIjuhO6O1rknZjefrhgMPjYEIP2dpVetd-a0Jx5cNB1TgHeQOxHgsvYz1d0lOy7ASbxR9FD-Iszogjn-6l48CssUeZxqyhH_ofUo7Xbbg2cd0rRmWohKdoPXFv9UlMF61A99be-yhL4I6a5BnNLDpChmnQ3cVES1qKJb_tcsCc-mXQ0lt3XFwXU"/>
+                <img alt="Dr. Chen" class="inline-block h-6 w-6 rounded-full ring-2 ring-surface-container-lowest object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPyQ6lMnMR9eKV7SbeUd7MSeb-LoFuXUfbgtAWviEbE6-xVlnyOrbQKlGri6o0r_qebV0PibZUoQPOvEa4Z3YrqYrH3STTf7fgf0exHuUfy8Fq1gB4SINflVus1J257jNgVdtzJ7CTlwUwhcWy-fGO_BP1CSLEbjN3Fk6dzmaxULdsb5TI98rBcWTM4PFGMfFkvqa5jSWO07aatu7WmHDHXcdQqc79EQNt2mMRSTo"/>
+                <div class="flex items-center justify-center h-6 w-6 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold ring-2 ring-surface-container-lowest">
+                  +1.2k
+                </div>
+                <span class="pl-2 text-xs text-on-surface-variant">estudiantes lo resolvieron</span>
+              </div>
+              
+              <button data-target-tab="casos" class="inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:bg-primary-container active:scale-95 transition-all shrink-0">
+                <span>Iniciar</span>
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ask AI Medical Tutor Banner -->
+      <section class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-high p-space-md shadow-sm">
+        <div class="flex items-center gap-space-md">
+          <div class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-primary text-on-primary shrink-0 shadow-md">
+            <span class="material-symbols-outlined text-2xl">smart_toy</span>
+            <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-secondary"></span>
+            </span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="text-sm font-bold text-on-surface tracking-tight truncate">
+              ¿Dudas diagnósticas o mnemotecnias?
+            </h4>
+            <p class="text-xs text-on-surface-variant truncate mt-0.5">
+              Dr. Synapse te explica fisiopatología paso a paso
+            </p>
+          </div>
+          <button data-target-tab="tutor-ia" aria-label="Consultar al Tutor IA" class="flex items-center justify-center w-10 h-10 rounded-xl bg-surface-container-lowest text-primary shadow-sm hover:bg-primary hover:text-on-primary active:scale-95 transition-all shrink-0">
+            <span class="material-symbols-outlined text-xl">send</span>
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: CASOS CLÍNICOS                     -->
+    <!-- ========================================== -->
+    <section id="view-casos" class="view-screen hidden flex flex-col w-full pb-6">
+      
+      <!-- Specialty Chips Carousel -->
+      <section class="w-full pt-3 pb-2 px-margin">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+          <button class="specialty-filter active px-4 py-1.5 rounded-full bg-primary text-on-primary text-xs font-semibold shrink-0 shadow-sm transition-all duration-150 transform active:scale-95 flex items-center gap-1.5" data-filter="all">
+            <span class="material-symbols-outlined text-base">apps</span>
+            <span>Todos</span>
+          </button>
+          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="urgencias">
+            <span class="material-symbols-outlined text-base text-error">emergency</span>
+            <span>Urgencias</span>
+          </button>
+          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="cardiologia">
+            <span class="material-symbols-outlined text-base text-primary">cardiology</span>
+            <span>Cardiología</span>
+          </button>
+          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="neurologia">
+            <span class="material-symbols-outlined text-base text-tertiary">neurology</span>
+            <span>Neurología</span>
+          </button>
+          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="pediatria">
+            <span class="material-symbols-outlined text-base text-secondary">child_care</span>
+            <span>Pediatría</span>
+          </button>
+          <button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="infecciosas">
+            <span class="material-symbols-outlined text-base text-on-secondary-container">microbiology</span>
+            <span>Infecciosas</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Active Case Banner -->
+      <section class="px-margin mt-2">
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary-container to-tertiary text-on-primary p-space-md shadow-md">
+          <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-surface-container-lowest/5 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-md px-2.5 py-1 rounded-full text-on-primary text-xs tracking-wide uppercase font-semibold">
+                <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span>
+                <span>En Consulta Activa</span>
+              </div>
+              <span class="text-xs text-primary-fixed-dim font-medium">ID: #142</span>
+            </div>
+
+            <div>
+              <h2 class="text-lg font-bold text-on-primary leading-tight line-clamp-2">
+                Varón de 45 años con cefalea intensa holocraneal en trueno y rigidez de nuca
+              </h2>
+              <p class="mt-1 text-xs text-primary-fixed flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">schedule</span>
+                <span>Última toma de decisiones hace 20 min</span>
+              </p>
+            </div>
+
+            <div class="bg-surface-container-lowest/10 rounded-xl p-2.5 backdrop-blur-sm">
+              <div class="flex items-center justify-between text-on-primary text-xs mb-1.5">
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm text-secondary-fixed">biotech</span>
+                  <span>Fase 2 de 4: Interpretación de Neuroimagen (TC)</span>
+                </span>
+                <span class="font-bold text-secondary-fixed">50%</span>
+              </div>
+              <div class="w-full bg-surface-container-lowest/20 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 gap-2">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-lowest/10 text-on-primary">
+                  <span class="material-symbols-outlined text-base">radiology</span>
+                </span>
+                <div class="text-left">
+                  <span class="block text-[10px] text-primary-fixed">Sospecha</span>
+                  <span class="text-xs text-on-primary font-semibold leading-none">HSA espontánea</span>
+                </div>
+              </div>
+              <button class="inline-flex items-center justify-center gap-1.5 px-4 h-10 rounded-xl bg-secondary-container text-on-secondary-container text-xs font-bold shadow-sm hover:brightness-105 active:scale-95 transition-all">
+                <span>Continuar</span>
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Header & Filter Stats -->
+      <section class="px-margin mt-6 flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-bold text-on-surface">Casos Disponibles</h3>
+          <p class="text-xs text-on-surface-variant">Simulador con retroalimentación bayesiana inmediata</p>
+        </div>
+        <div class="flex items-center gap-1 bg-surface-container-low px-2.5 py-1 rounded-full text-on-surface-variant">
+          <span class="material-symbols-outlined text-base text-secondary">verified</span>
+          <span class="text-xs font-bold text-on-surface">4 listos</span>
+        </div>
+      </section>
+
+      <!-- Interactive Clinical Cases List -->
+      <section class="px-margin mt-3 flex flex-col gap-3.5" id="cases-container">
+        
+        <!-- Case 1: Pediatria -->
+        <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="pediatria">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed/30 text-on-secondary-fixed text-xs font-semibold">
+                <span class="material-symbols-outlined text-xs">child_care</span>
+                Pediatría
+              </span>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+                <span class="material-symbols-outlined text-xs text-secondary">signal_cellular_alt_2_bar</span>
+                Media
+              </span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-secondary font-bold">
+              <span class="material-symbols-outlined text-sm">thumb_up</span>
+              <span>84% éxito</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold text-on-surface leading-snug">
+              Lactante de 8 meses con fiebre alta y exantema súbito post-defervescencia
+            </h4>
+            <p class="text-xs text-on-surface-variant mt-1">
+              Presenta caída térmica abrupta tras 72h con brote eritematoso rosado máculo-papular en tronco que respeta cara.
+            </p>
+          </div>
+
+          <!-- Vital Signs Triage Badge Bar -->
+          <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
+              <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                142 lpm
+              </span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
+              <span class="text-xs font-bold text-on-surface">85/55</span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
+              <span class="text-xs font-bold text-secondary">98%</span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">Temp</span>
+              <span class="text-xs font-bold text-error">37.4°C</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-base">timer</span>
+              <span>12 min aprox.</span>
+            </div>
+            <button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
+              <span>Iniciar Caso</span>
+              <span class="material-symbols-outlined text-base">play_arrow</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Case 2: Neurología -->
+        <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="neurologia">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-semibold">
+                <span class="material-symbols-outlined text-xs">neurology</span>
+                Neurología
+              </span>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-xs">
+                <span class="material-symbols-outlined text-xs">priority_high</span>
+                Avanzada
+              </span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-error font-bold">
+              <span class="material-symbols-outlined text-sm">psychology_alt</span>
+              <span>62% éxito</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold text-on-surface leading-snug">
+              Mujer de 34 años con debilidad muscular progresiva y ptosis vespertina
+            </h4>
+            <p class="text-xs text-on-surface-variant mt-1">
+              Diplopía fluctuante al final de la jornada laboral, dificultad para masticar y test de estimulación repetitiva pendiente.
+            </p>
+          </div>
+
+          <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
+              <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                76 lpm
+              </span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
+              <span class="text-xs font-bold text-on-surface">118/72</span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
+              <span class="text-xs font-bold text-secondary">99%</span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">Cap. Vital</span>
+              <span class="text-xs font-bold text-on-surface-variant">Normal</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-base">timer</span>
+              <span>18 min aprox.</span>
+            </div>
+            <button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
+              <span>Iniciar Caso</span>
+              <span class="material-symbols-outlined text-base">play_arrow</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Case 3: Cardiología -->
+        <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="cardiologia">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed-dim/40 text-on-primary-fixed-variant text-xs font-semibold">
+                <span class="material-symbols-outlined text-xs">cardiology</span>
+                Cardiología
+              </span>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+                <span class="material-symbols-outlined text-xs text-primary">equalizer</span>
+                Intermedia
+              </span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-secondary font-bold">
+              <span class="material-symbols-outlined text-sm">thumb_up</span>
+              <span>79% éxito</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold text-on-surface leading-snug">
+              Hombre de 68 años con disnea progresiva y edemas en miembros inferiores
+            </h4>
+            <p class="text-xs text-on-surface-variant mt-1">
+              Ortopnea de 3 almohadas, ingurgitación yugular patológica a 45° y crepitantes bibasales con ritmo de galope R3 audible.
+            </p>
+          </div>
+
+          <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
+              <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                92 lpm
+              </span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
+              <span class="text-xs font-bold text-on-surface">148/92</span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
+              <span class="text-xs font-bold text-error">91%</span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">BNP</span>
+              <span class="text-xs font-bold text-error">Elevado</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-base">timer</span>
+              <span>15 min aprox.</span>
+            </div>
+            <button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
+              <span>Iniciar Caso</span>
+              <span class="material-symbols-outlined text-base">play_arrow</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Case 4: Urgencias -->
+        <article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="urgencias">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container text-xs font-semibold">
+                <span class="material-symbols-outlined text-xs">emergency</span>
+                Urgencias
+              </span>
+              <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+                <span class="material-symbols-outlined text-xs text-secondary">signal_cellular_alt_1_bar</span>
+                Inicial
+              </span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-secondary font-bold">
+              <span class="material-symbols-outlined text-sm">thumb_up</span>
+              <span>91% éxito</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold text-on-surface leading-snug">
+              Joven de 22 años con dolor en fosa ilíaca derecha y signo de Blumberg positivo
+            </h4>
+            <p class="text-xs text-on-surface-variant mt-1">
+              Cronología apendicular clásica de Murphy: inicio periumbilical irradiado a FID con náuseas y defensa abdominal involuntaria.
+            </p>
+          </div>
+
+          <div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">FC</span>
+              <span class="text-xs font-bold text-on-surface flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-xs text-error">favorite</span>
+                98 lpm
+              </span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">PA</span>
+              <span class="text-xs font-bold text-on-surface">122/78</span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">SatO₂</span>
+              <span class="text-xs font-bold text-secondary">99%</span>
+            </div>
+            <div class="w-px h-6 bg-surface-variant"></div>
+            <div class="flex flex-col items-center flex-1">
+              <span class="text-[10px] text-on-surface-variant font-medium">Temp</span>
+              <span class="text-xs font-bold text-error">38.1°C</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-base">timer</span>
+              <span>10 min aprox.</span>
+            </div>
+            <button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary text-xs font-semibold shadow-sm hover:brightness-110 active:scale-95 transition-all">
+              <span>Iniciar Caso</span>
+              <span class="material-symbols-outlined text-base">play_arrow</span>
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <!-- Empty state fallback when filtering has no items -->
+      <div class="hidden px-margin py-10 flex flex-col items-center justify-center text-center" id="empty-state">
+        <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-2">
+          <span class="material-symbols-outlined text-3xl">clinical_notes</span>
+        </div>
+        <p class="text-base font-bold text-on-surface">Sin casos en esta categoría</p>
+        <p class="text-xs text-on-surface-variant max-w-xs mt-1">Explora otra especialidad o selecciona 'Todos' para ver casos de razonamiento clínico disponibles.</p>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: CUESTIONARIOS / TEST               -->
+    <!-- ========================================== -->
+    <section id="view-test" class="view-screen hidden flex flex-col w-full">
+      
+      <!-- Status & Session Tracker -->
+      <div class="px-margin pt-space-sm pb-space-xs flex flex-col gap-space-sm bg-surface-container-lowest shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-space-xs">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
+              <span class="material-symbols-outlined text-[14px]">cardiology</span>
+              Cardiología & Urgencias
+            </span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs">
+              Dificultad: Media
+            </span>
+          </div>
+          <div class="flex items-center gap-space-xs text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full">
+            <span class="material-symbols-outlined text-[16px] text-primary">timer</span>
+            <span class="text-xs font-bold tabular-nums text-on-surface" id="quiz-timer">01:24</span>
+          </div>
+        </div>
+
+        <!-- Progress Info & Linear Bar -->
+        <div class="flex flex-col gap-1.5 pb-1">
+          <div class="flex items-center justify-between text-on-surface-variant text-xs">
+            <span class="text-on-surface font-bold">Pregunta 7 <span class="font-normal text-on-surface-variant">de 20</span></span>
+            <span class="text-xs text-secondary font-semibold">35% completado</span>
+          </div>
+          <div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-[35%] transition-all duration-500 ease-out"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Space -->
+      <div class="px-margin py-space-md flex flex-col gap-space-lg">
+        
+        <!-- Clinical Case Prompt Card -->
+        <section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+          <div class="flex items-center gap-space-xs text-primary text-xs font-bold uppercase tracking-wider">
+            <span class="material-symbols-outlined text-lg">medical_information</span>
+            <span>CASO CLÍNICO #204</span>
+          </div>
+          <p class="text-on-surface text-sm leading-relaxed">
+            Una mujer de 62 años con antecedentes de hipertensión arterial acude a urgencias por palpitaciones de inicio súbito y mareo leve. La presión arterial es de 118/76 mmHg. El electrocardiograma muestra una taquicardia de complejo estrecho regular a 170 lpm, sin ondas P visibles identificables. Las maniobras vagales no logran revertir el ritmo.
+          </p>
+          <div class="p-space-sm rounded-lg bg-surface-container-low mt-1">
+            <p class="text-on-surface text-sm font-semibold">
+              ¿Cuál es el tratamiento farmacológico de primera elección en este escenario clínico?
+            </p>
+          </div>
+        </section>
+
+        <!-- Multiple Choice Options -->
+        <section aria-label="Opciones de respuesta" class="flex flex-col gap-space-sm" role="radiogroup">
+          <!-- Option A -->
+          <button class="w-full text-left bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm transition-transform active:scale-[0.99]" type="button">
+            <div class="flex items-start gap-space-sm min-w-0">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center text-xs font-bold">
+                A
+              </span>
+              <span class="text-on-surface text-sm leading-snug">
+                Amiodarona 300 mg i.v. en bolo lento
+              </span>
+            </div>
+            <span class="w-5 h-5 rounded-full bg-surface-container flex-shrink-0"></span>
+          </button>
+
+          <!-- Option B (Correct) -->
+          <button class="w-full text-left bg-secondary-container/20 border-2 border-secondary p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm transition-transform active:scale-[0.99]" type="button">
+            <div class="flex items-start gap-space-sm min-w-0">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-xs font-bold shadow-sm">
+                B
+              </span>
+              <div class="flex flex-col min-w-0">
+                <span class="text-on-surface text-sm font-semibold leading-snug">
+                  Adenosina 6 mg i.v. en bolo rápido seguido de lavado salino
+                </span>
+                <span class="text-xs text-secondary font-bold mt-0.5 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px]">check_circle</span>
+                  Respuesta Correcta de Primera Línea
+                </span>
+              </div>
+            </div>
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+              <span class="material-symbols-outlined text-[16px] font-bold">check</span>
+            </span>
+          </button>
+
+          <!-- Option C -->
+          <button class="w-full text-left bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm transition-transform active:scale-[0.99]" type="button">
+            <div class="flex items-start gap-space-sm min-w-0">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center text-xs font-bold">
+                C
+              </span>
+              <span class="text-on-surface text-sm leading-snug">
+                Digoxina 0.5 mg i.v. en infusión
+              </span>
+            </div>
+            <span class="w-5 h-5 rounded-full bg-surface-container flex-shrink-0"></span>
+          </button>
+
+          <!-- Option D -->
+          <button class="w-full text-left bg-error-container/30 border border-error/40 p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm transition-transform active:scale-[0.99]" type="button">
+            <div class="flex items-start gap-space-sm min-w-0">
+              <span class="flex-shrink-0 w-7 h-7 rounded-full bg-error text-on-error flex items-center justify-center text-xs font-bold shadow-sm">
+                D
+              </span>
+              <div class="flex flex-col min-w-0">
+                <span class="text-on-surface text-sm leading-snug">
+                  Verapamilo 5 mg i.v.
+                </span>
+                <span class="text-xs text-error font-bold mt-0.5 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px]">cancel</span>
+                  Opción de segunda línea (riesgo hipotensión)
+                </span>
+              </div>
+            </div>
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-error text-on-error flex items-center justify-center">
+              <span class="material-symbols-outlined text-[16px] font-bold">close</span>
+            </span>
+          </button>
+        </section>
+
+        <!-- Expanded Clinical Rationale & Pearls -->
+        <article class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-2xl">auto_stories</span>
+              <h2 class="text-base text-on-surface font-bold">Justificación Clínica</h2>
+            </div>
+            <span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
+              AHA / ESC 2023
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-1.5 p-space-sm rounded-lg bg-surface-container-low">
+            <div class="flex items-center gap-1.5 text-primary text-xs font-bold">
+              <span class="material-symbols-outlined text-base">verified</span>
+              <span>¿Por qué es correcta la Adenosina?</span>
+            </div>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              En presencia de una <strong class="text-on-surface">taquicardia supraventricular por reentrada nodal (TRIN)</strong> regular y hemodinámicamente estable (PA 118/76 mmHg) refractaria a maniobras vagales, la <strong class="text-on-surface">Adenosina i.v.</strong> es el fármaco de primera elección. Actúa provocando un bloqueo transitorio y selectivo del nodo AV (vida media &lt; 10 s), interrumpiendo el circuito de macro-reentrada de forma segura y diagnóstica.
+            </p>
+          </div>
+
+          <div class="flex items-start gap-space-sm p-space-sm rounded-lg bg-secondary-container/25">
+            <div class="p-1 rounded-full bg-secondary-container text-on-secondary-container mt-0.5 flex-shrink-0">
+              <span class="material-symbols-outlined text-xl">lightbulb</span>
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <span class="text-xs font-bold text-on-secondary-container">Perla Médica (High-Yield Pearl)</span>
+              <p class="text-xs text-on-surface-variant leading-snug">
+                Administrar siempre por vía intravenosa proximal (fosa antecubital) en bolo ultrarrápido seguido inmediatamente de 20 mL de suero fisiológico y elevación del brazo. El verapamilo es de 2.ª línea debido a mayor riesgo de hipotensión sistémica prolongada.
+              </p>
+            </div>
+          </div>
+
+          <!-- Community Retention & Statistics -->
+          <div class="flex flex-col gap-2 pt-1">
+            <div class="flex items-center justify-between text-on-surface-variant text-xs">
+              <span class="flex items-center gap-1 font-semibold text-on-surface">
+                <span class="material-symbols-outlined text-sm text-primary">groups</span>
+                Tasa de acierto de la comunidad
+              </span>
+              <span class="font-bold text-secondary text-xs">68% de acierto</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden flex">
+              <div class="h-full bg-secondary rounded-l-full w-[68%]" title="Adenosina (68%)"></div>
+              <div class="h-full bg-error/70 w-[18%]" title="Verapamilo (18%)"></div>
+              <div class="h-full bg-surface-dim flex-1 rounded-r-full" title="Otras (14%)"></div>
+            </div>
+            <div class="flex items-center justify-between text-on-surface-variant text-[11px] px-0.5">
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> Adenosina (68%)</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error/70 inline-block"></span> Verapamilo (18%)</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-dim inline-block"></span> Otros (14%)</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-surface-container">
+            <span class="text-xs text-on-surface-variant">Próximo repaso espaciado:</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary text-xs font-semibold">
+              En 3 días (Algoritmo SM-2)
+            </span>
+          </div>
+        </article>
+
+        <!-- Bottom Actions -->
+        <div class="flex flex-col gap-space-sm pt-space-xs pb-space-lg">
+          <div class="flex items-center gap-space-sm">
+            <button data-target-tab="tutor-ia" class="flex-1 min-h-[48px] px-space-sm bg-surface-container-lowest text-primary rounded-xl text-xs font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" type="button">
+              <span class="material-symbols-outlined text-xl text-primary">smart_toy</span>
+              <span>Consultar Tutor IA</span>
+            </button>
+            <button class="flex-[1.2] min-h-[48px] px-space-md bg-primary text-on-primary rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" type="button">
+              <span>Siguiente Pregunta</span>
+              <span class="material-symbols-outlined text-xl">arrow_forward</span>
+            </button>
+          </div>
+          <div class="flex items-center justify-center gap-space-lg pt-1">
+            <button class="inline-flex items-center gap-1 text-on-surface-variant text-xs hover:text-primary transition-colors" type="button">
+              <span class="material-symbols-outlined text-sm">bookmark_border</span>
+              <span>Guardar en Flashcards</span>
+            </button>
+            <span class="w-1 h-1 rounded-full bg-surface-dim"></span>
+            <button class="inline-flex items-center gap-1 text-on-surface-variant text-xs hover:text-error transition-colors" type="button">
+              <span class="material-symbols-outlined text-sm">flag</span>
+              <span>Reportar duda</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 4: PROGRESO Y REPASO                  -->
+    <!-- ========================================== -->
+    <section id="view-repaso" class="view-screen hidden flex flex-col w-full">
+      <div class="px-margin pt-space-md pb-space-lg flex flex-col gap-space-lg">
+        
+        <!-- Selector Temporal de Desempeño -->
+        <div class="flex items-center justify-between bg-surface-container-high p-1 rounded-xl shadow-sm">
+          <button class="time-range-btn flex-1 py-1.5 px-space-sm text-center rounded-lg bg-surface-container-lowest text-primary-container text-xs font-semibold shadow-sm transition-all" type="button">Esta Semana</button>
+          <button class="time-range-btn flex-1 py-1.5 px-space-sm text-center rounded-lg text-on-surface-variant text-xs font-medium transition-all hover:text-on-surface" type="button">Este Mes</button>
+          <button class="time-range-btn flex-1 py-1.5 px-space-sm text-center rounded-lg text-on-surface-variant text-xs font-medium transition-all hover:text-on-surface" type="button">Histórico</button>
+        </div>
+
+        <!-- Métrica Principal: Retención & Aciertos -->
+        <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+          <div class="flex items-start justify-between">
+            <div class="flex flex-col">
+              <span class="text-[10px] text-on-surface-variant uppercase tracking-wider font-semibold">Algoritmo Spaced Repetition</span>
+              <span class="text-xl font-bold text-on-surface mt-0.5">Retención Global</span>
+            </div>
+            <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold">
+              <span class="material-symbols-outlined text-sm leading-none">trending_up</span>
+              <span>+4.5% vs mes ant.</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-space-lg pt-1">
+            <!-- Radial Progress Meter -->
+            <div class="relative w-24 h-24 shrink-0 flex items-center justify-center">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 96 96">
+                <circle cx="48" cy="48" fill="transparent" r="40" stroke="#f2f4f6" stroke-width="8"></circle>
+                <circle cx="48" cy="48" fill="transparent" r="40" stroke="#006c49" stroke-dasharray="251.32" stroke-dashoffset="58.3" stroke-linecap="round" stroke-width="8"></circle>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span class="text-lg font-bold text-on-surface leading-none">76.8%</span>
+                <span class="text-[10px] text-on-surface-variant">Aciertos</span>
+              </div>
+            </div>
+
+            <!-- Métricas Rápidas -->
+            <div class="flex flex-col justify-center gap-2 flex-1 min-w-0">
+              <div class="flex items-center gap-2.5 bg-surface-container-low p-2 rounded-xl">
+                <div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0">
+                  <span class="material-symbols-outlined text-lg">check_circle</span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <span class="text-sm font-bold text-on-surface leading-tight">1,420</span>
+                  <span class="text-xs text-on-surface-variant truncate">Preguntas resueltas</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2.5 bg-surface-container-low p-2 rounded-xl">
+                <div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shrink-0">
+                  <span class="material-symbols-outlined text-lg">clinical_notes</span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <span class="text-sm font-bold text-on-surface leading-tight">38</span>
+                  <span class="text-xs text-on-surface-variant truncate">Casos clínicos completos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sesión de Repaso Personalizado -->
+        <div class="bg-primary-container text-on-primary rounded-2xl p-space-lg shadow-md flex flex-col gap-space-md relative overflow-hidden">
+          <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-surface-container-lowest/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="flex items-center justify-between">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/20 backdrop-blur-md">
+              <span class="material-symbols-outlined text-sm text-secondary-container">psychology</span>
+              <span class="text-xs text-surface-container-lowest font-medium">Curva del Olvido Activa</span>
+            </div>
+            <span class="text-xs text-primary-fixed-dim">Hoy</span>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <h2 class="text-lg font-bold text-surface-container-lowest">24 conceptos listos para fijar</h2>
+            <p class="text-xs text-surface-container-low/90">Intervalo óptimo de consolidación mnemotécnica alcanzado para hoy.</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="bg-surface-container-lowest/15 backdrop-blur-sm p-2.5 rounded-xl flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-error-container/30 flex items-center justify-center text-error-container shrink-0">
+                <span class="material-symbols-outlined text-base">replay</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-sm font-bold text-surface-container-lowest leading-none">14</span>
+                <span class="text-xs text-surface-container-low/80 truncate">Falladas antes</span>
+              </div>
+            </div>
+            <div class="bg-surface-container-lowest/15 backdrop-blur-sm p-2.5 rounded-xl flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-secondary-container/30 flex items-center justify-center text-secondary-container shrink-0">
+                <span class="material-symbols-outlined text-base">style</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="text-sm font-bold text-surface-container-lowest leading-none">10</span>
+                <span class="text-xs text-surface-container-low/80 truncate">Flashcards difíciles</span>
+              </div>
+            </div>
+          </div>
+
+          <button data-target-tab="test" class="w-full mt-1 py-3 px-space-md rounded-xl bg-secondary-container text-on-secondary-container text-xs font-bold flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform" type="button">
+            <span class="material-symbols-outlined text-xl">play_circle</span>
+            <span>Iniciar Repaso Inteligente (15 min)</span>
+          </button>
+        </div>
+
+        <!-- Radar de Rendimiento por Especialidades -->
+        <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-md">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary-container">speed</span>
+              <h2 class="text-base font-bold text-on-surface">Rendimiento por Especialidad</h2>
+            </div>
+            <span class="text-xs text-on-surface-variant font-medium">5 Áreas</span>
+          </div>
+
+          <div class="flex flex-col gap-space-md pt-1">
+            <!-- Cardiología -->
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 min-w-0">
+                  <div class="w-6 h-6 rounded bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0">
+                    <span class="material-symbols-outlined text-sm">cardiology</span>
+                  </div>
+                  <span class="text-xs font-semibold text-on-surface truncate">Cardiología</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] text-secondary font-bold">Excelente</span>
+                  <span class="text-xs font-bold text-on-surface">84%</span>
+                </div>
+              </div>
+              <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+                <div class="h-full bg-secondary rounded-full" style="width: 84%;"></div>
+              </div>
+            </div>
+
+            <!-- Nefrología -->
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 min-w-0">
+                  <div class="w-6 h-6 rounded bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shrink-0">
+                    <span class="material-symbols-outlined text-sm">water_drop</span>
+                  </div>
+                  <span class="text-xs font-semibold text-on-surface truncate">Nefrología</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] text-primary font-bold">Bueno</span>
+                  <span class="text-xs font-bold text-on-surface">79%</span>
+                </div>
+              </div>
+              <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+                <div class="h-full bg-surface-tint rounded-full" style="width: 79%;"></div>
+              </div>
+            </div>
+
+            <!-- Neurología -->
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 min-w-0">
+                  <div class="w-6 h-6 rounded bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed shrink-0">
+                    <span class="material-symbols-outlined text-sm">neurology</span>
+                  </div>
+                  <span class="text-xs font-semibold text-on-surface truncate">Neurología</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] text-on-surface-variant font-medium">Aceptable</span>
+                  <span class="text-xs font-bold text-on-surface">71%</span>
+                </div>
+              </div>
+              <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+                <div class="h-full bg-tertiary-container rounded-full" style="width: 71%;"></div>
+              </div>
+            </div>
+
+            <!-- Hematología -->
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 min-w-0">
+                  <div class="w-6 h-6 rounded bg-surface-container-high flex items-center justify-center text-on-surface-variant shrink-0">
+                    <span class="material-symbols-outlined text-sm">hematology</span>
+                  </div>
+                  <span class="text-xs font-semibold text-on-surface truncate">Hematología</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] text-on-surface-variant font-medium">En progreso</span>
+                  <span class="text-xs font-bold text-on-surface">65%</span>
+                </div>
+              </div>
+              <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+                <div class="h-full bg-outline rounded-full" style="width: 65%;"></div>
+              </div>
+            </div>
+
+            <!-- Farmacología Clínica (Alerta) -->
+            <div class="flex flex-col gap-1.5 bg-error-container/20 p-2.5 rounded-xl border border-error-container">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 min-w-0">
+                  <div class="w-6 h-6 rounded bg-error-container flex items-center justify-center text-error shrink-0">
+                    <span class="material-symbols-outlined text-sm">medication</span>
+                  </div>
+                  <span class="text-xs font-semibold text-on-surface truncate">Farmacología Clínica</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">
+                    <span class="material-symbols-outlined text-xs">priority_high</span> Prioridad urgente
+                  </span>
+                  <span class="text-xs font-bold text-error">58%</span>
+                </div>
+              </div>
+              <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+                <div class="h-full bg-error rounded-full" style="width: 58%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conceptos Clave Débiles a Reforzar -->
+        <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-md">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-error">bolt</span>
+              <h2 class="text-base font-bold text-on-surface">Conceptos Clave Débiles</h2>
+            </div>
+            <span class="text-xs text-on-surface-variant font-medium">3 Críticos</span>
+          </div>
+
+          <div class="flex flex-col gap-space-sm">
+            <div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-2 hover:bg-surface-container transition-colors">
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-xs font-semibold text-on-surface leading-snug">Mecanismo de acción de los antiarrítmicos de clase III</span>
+                <div class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold shrink-0 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">close</span> Fallado 3×
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-on-surface-variant text-xs pt-1">
+                <div class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                  <span>Intervalo: 4 horas</span>
+                </div>
+                <button data-target-tab="test" class="text-xs font-semibold text-primary hover:underline flex items-center gap-0.5" type="button">
+                  <span>Repasar</span>
+                  <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-2 hover:bg-surface-container transition-colors">
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-xs font-semibold text-on-surface leading-snug">Criterios de Duke para Endocarditis Infecciosa</span>
+                <div class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold shrink-0 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">close</span> Fallado 2×
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-on-surface-variant text-xs pt-1">
+                <div class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                  <span>Intervalo: 12 horas</span>
+                </div>
+                <button data-target-tab="test" class="text-xs font-semibold text-primary hover:underline flex items-center gap-0.5" type="button">
+                  <span>Repasar</span>
+                  <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 5: TUTOR DE IA (DR. SYNAPSE)          -->
+    <!-- ========================================== -->
+    <section id="view-tutor-ia" class="view-screen hidden flex flex-col w-full">
+      
+      <!-- Tutor Header / Identity Card -->
+      <div class="px-margin pt-space-sm pb-space-xs">
+        <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-sm">
+          <div class="flex items-center gap-space-sm">
+            <div class="relative shrink-0">
+              <div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+                <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">neurology</span>
+              </div>
+              <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-secondary rounded-full ring-2 ring-surface-container-lowest flex items-center justify-center">
+                <span class="w-1.5 h-1.5 bg-secondary-fixed rounded-full animate-pulse"></span>
+              </span>
+            </div>
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-1.5">
+                <h1 class="text-base font-bold text-on-surface truncate">Dr. Synapse</h1>
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px] font-bold shrink-0">
+                  <span class="material-symbols-outlined text-[13px] mr-0.5" style="font-variation-settings: 'FILL' 1;">verified</span> Tutor Médico
+                </span>
+              </div>
+              <p class="text-xs text-on-surface-variant truncate">
+                En línea • AHA, ESC, UpToDate, Harrison
+              </p>
+            </div>
+          </div>
+
+          <!-- Socratic Method Badge -->
+          <div class="bg-surface-container-low rounded-xl px-space-sm py-2 flex items-center justify-between gap-space-xs">
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="material-symbols-outlined text-secondary text-lg shrink-0">psychology_alt</span>
+              <span class="text-xs font-semibold text-secondary truncate">Modo Socrático Activo</span>
+            </div>
+            <span class="text-[10px] text-on-surface-variant bg-surface-container-highest px-2 py-0.5 rounded-full shrink-0 font-medium">
+              Razonamiento guiado
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Query Chips Carousel -->
+      <div class="w-full py-space-xs">
+        <div class="px-margin mb-1.5 flex items-center justify-between">
+          <span class="text-[10px] text-on-surface-variant tracking-wide uppercase font-semibold flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm text-primary">tips_and_updates</span>
+            Sugerencias rápidas
+          </span>
+          <span class="text-[10px] text-outline">Toca para enviar</span>
+        </div>
+        <div class="flex gap-2 overflow-x-auto px-margin no-scrollbar pb-1">
+          <button class="shrink-0 bg-surface-container-lowest hover:bg-surface-container-high transition-colors px-3 py-2 rounded-xl shadow-sm text-left flex items-center gap-1.5 text-on-surface" onclick="insertQuery('¿Cómo diferenciar TRIN de WPW?')">
+            <span class="material-symbols-outlined text-sm text-tertiary-container">ecg_heart</span>
+            <span class="text-xs font-medium whitespace-nowrap">¿Cómo diferenciar TRIN de WPW?</span>
+          </button>
+          <button class="shrink-0 bg-surface-container-lowest hover:bg-surface-container-high transition-colors px-3 py-2 rounded-xl shadow-sm text-left flex items-center gap-1.5 text-on-surface" onclick="insertQuery('Eje eléctrico ECG paso a paso')">
+            <span class="material-symbols-outlined text-sm text-primary">straighten</span>
+            <span class="text-xs font-medium whitespace-nowrap">Eje eléctrico ECG paso a paso</span>
+          </button>
+          <button class="shrink-0 bg-surface-container-lowest hover:bg-surface-container-high transition-colors px-3 py-2 rounded-xl shadow-sm text-left flex items-center gap-1.5 text-on-surface" onclick="insertQuery('Nemotecnia fármacos TBC (RIPE)')">
+            <span class="material-symbols-outlined text-sm text-secondary">memory</span>
+            <span class="text-xs font-medium whitespace-nowrap">Nemotecnia fármacos TBC (RIPE)</span>
+          </button>
+          <button class="shrink-0 bg-surface-container-lowest hover:bg-surface-container-high transition-colors px-3 py-2 rounded-xl shadow-sm text-left flex items-center gap-1.5 text-on-surface" onclick="insertQuery('Pregunta rápida de Farmacología')">
+            <span class="material-symbols-outlined text-sm text-error">quiz</span>
+            <span class="text-xs font-medium whitespace-nowrap">Pregunta rápida de Farmacología</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Stream Container -->
+      <div class="flex flex-col gap-space-md px-margin py-space-sm" id="chat-messages">
+        <div class="flex items-center justify-center my-0.5">
+          <span class="px-2.5 py-0.5 rounded-full bg-surface-container text-[11px] text-on-surface-variant font-medium">
+            Hoy • Sesión de Cardiología Clínica
+          </span>
+        </div>
+
+        <!-- Student User Message -->
+        <div class="flex flex-col items-end gap-1 pl-8">
+          <div class="flex items-center gap-1.5 text-on-surface-variant px-1">
+            <span class="text-xs font-semibold">Dra. Sofía R. (MIR 1)</span>
+            <span class="text-[10px] text-outline">10:42 AM</span>
+          </div>
+          <div class="bg-primary-container text-on-primary rounded-2xl rounded-tr-xs p-space-md shadow-sm">
+            <p class="text-xs leading-relaxed">
+              Hola Dr. Synapse, sigo confundiéndome entre los ruidos cardíacos <span class="font-semibold underline decoration-secondary-container decoration-2 underline-offset-2">R3 y R4</span>. ¿Me ayudas a diferenciarlos clínicamente y en qué patologías se ausculta cada uno?
+            </p>
+          </div>
+          <div class="flex items-center gap-1 text-outline text-[10px] pr-1">
+            <span>Leído</span>
+            <span class="material-symbols-outlined text-sm text-secondary">done_all</span>
+          </div>
+        </div>
+
+        <!-- Tutor AI Response -->
+        <div class="flex flex-col items-start gap-1 pr-4">
+          <div class="flex items-center gap-1.5 text-on-surface-variant px-1">
+            <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">neurology</span>
+            <span class="text-xs font-semibold text-primary">Dr. Synapse</span>
+            <span class="text-[10px] text-outline">10:43 AM</span>
+          </div>
+
+          <div class="bg-surface-container-lowest text-on-surface rounded-2xl rounded-tl-xs p-space-md shadow-sm flex flex-col gap-space-sm w-full">
+            <p class="text-xs text-on-surface leading-relaxed">
+              ¡Hola, Sofía! Excelente pregunta, es clásica de examen de grado y rotación de pase de visita médica. Vamos a desglosarla con enfoque mnemotécnico y fisiopatológico:
+            </p>
+
+            <!-- Block 1: R3 -->
+            <div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
+                  <span class="material-symbols-outlined text-xs">volume_up</span> 1. R3 • Galope Ventricular
+                </span>
+                <span class="text-[10px] text-primary font-bold tracking-wider">PROTODIÁSTOLE</span>
+              </div>
+              <div class="space-y-1 text-xs text-on-surface pl-1">
+                <p><span class="font-semibold text-primary-container">• Momento:</span> Llenado ventricular pasivo rápido justo tras la apertura de la mitral.</p>
+                <p><span class="font-semibold text-primary-container">• Mecanismo:</span> Sobrecarga de volumen o ventrículo muy dilatado que recibe sangre a alta velocidad impactando la pared.</p>
+                <div class="bg-surface-container-lowest px-2 py-1 rounded-lg flex items-center justify-between my-1">
+                  <span class="text-[10px] text-on-surface-variant font-medium">Cadencia auditiva:</span>
+                  <span class="text-xs text-tertiary font-bold tracking-widest bg-tertiary-fixed px-2 py-0.5 rounded">«Ken - tuck - y» (R1 - R2 - R3)</span>
+                </div>
+                <div class="pt-0.5">
+                  <p><span class="font-semibold text-secondary">Fisiológico:</span> Jóvenes sanos &lt;30 años, atletas y 3er trimestre de gestación.</p>
+                  <p><span class="font-semibold text-error">Patológico:</span> Insuficiencia Cardíaca Congestiva con FEVI reducida e insuficiencia mitral grave.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Block 2: R4 -->
+            <div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-container text-xs font-semibold">
+                  <span class="material-symbols-outlined text-xs">hearing</span> 2. R4 • Galope Auricular
+                </span>
+                <span class="text-[10px] text-secondary font-bold tracking-wider">TELEDIÁSTOLE</span>
+              </div>
+              <div class="space-y-1 text-xs text-on-surface pl-1">
+                <p><span class="font-semibold text-secondary">• Momento:</span> Final de la diástole, durante la patada o contracción auricular activa.</p>
+                <p><span class="font-semibold text-secondary">• Mecanismo:</span> Contracción auricular enérgica contra un ventrículo rígido y poco distensible (sobrecarga de presión).</p>
+                <div class="bg-surface-container-lowest px-2 py-1 rounded-lg flex items-center justify-between my-1">
+                  <span class="text-[10px] text-on-surface-variant font-medium">Cadencia auditiva:</span>
+                  <span class="text-xs text-secondary font-bold tracking-widest bg-secondary-fixed px-2 py-0.5 rounded">«Ten - nes - see» (R4 - R1 - R2)</span>
+                </div>
+                <div class="pt-0.5">
+                  <p><span class="font-semibold text-error">Patológico:</span> HTA de larga data no controlada (HVI), estenosis aórtica severa o miocardiopatía hipertrófica.</p>
+                  <p class="text-[10px] text-error bg-error-container text-on-error-container px-1.5 py-0.5 rounded inline-block font-semibold mt-0.5">⚠️ Regla de oro: El R4 NUNCA es fisiológico y requiere ritmo sinusal (ausente en FA).</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Socratic Prompt Interactive Card -->
+            <div class="bg-primary-fixed/30 rounded-xl p-space-sm flex flex-col gap-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-xl shrink-0">help</span>
+                <p class="text-xs text-primary leading-snug font-semibold">
+                  👉 ¿Quieres que hagamos un micro-caso clínico de 60 segundos para practicar cómo razonarlo en guardia?
+                </p>
+              </div>
+              <div class="flex gap-2 pt-1">
+                <button class="flex-1 bg-primary text-on-primary py-2 px-3 rounded-lg text-xs font-semibold shadow-sm active:scale-95 transition-all text-center" onclick="respondChoice('¡Sí, ponme el caso!')">
+                  Sí, ponme el caso
+                </button>
+                <button class="bg-surface-container-lowest text-primary py-2 px-3 rounded-lg text-xs font-semibold shadow-sm active:scale-95 transition-all text-center" onclick="respondChoice('Explícame mejor el fonocardiograma')">
+                  Ver fonograma
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 text-on-surface-variant text-[11px]">
+              <div class="flex items-center gap-2">
+                <button class="text-outline hover:text-primary transition-colors flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-base">thumb_up</span>
+                </button>
+                <button class="text-outline hover:text-error transition-colors flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-base">thumb_down</span>
+                </button>
+                <button class="text-outline hover:text-primary transition-colors flex items-center gap-0.5 ml-1">
+                  <span class="material-symbols-outlined text-base">bookmark_add</span>
+                </button>
+              </div>
+              <span class="text-outline">Ref: Braunwald's Heart Disease 12va Ed.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audio Phonogram Visualizer Card -->
+      <div class="px-margin my-space-xs">
+        <div class="bg-surface-container-lowest rounded-2xl p-space-sm shadow-sm flex items-center gap-space-sm">
+          <button class="w-10 h-10 rounded-xl bg-secondary text-on-secondary flex items-center justify-center shrink-0 active:scale-95 transition-transform shadow-sm" id="audio-play-btn" onclick="toggleAudio()">
+            <span class="material-symbols-outlined text-xl" id="play-icon">play_arrow</span>
+          </button>
+          <div class="flex flex-col min-w-0 flex-1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-on-surface truncate">Muestra de Audio Clínico: Galope R3 vs R4</span>
+              <span class="text-xs text-secondary font-mono">00:14</span>
+            </div>
+            <!-- Sound Wave Visualizer -->
+            <div class="flex items-center gap-1 h-5 mt-1 overflow-hidden">
+              <span class="w-1 bg-secondary rounded-full h-2 animate-pulse"></span>
+              <span class="w-1 bg-secondary rounded-full h-4"></span>
+              <span class="w-1 bg-secondary-container rounded-full h-3"></span>
+              <span class="w-1 bg-secondary rounded-full h-5"></span>
+              <span class="w-1 bg-secondary-fixed rounded-full h-2"></span>
+              <span class="w-1 bg-outline-variant rounded-full h-1"></span>
+              <span class="w-1 bg-outline-variant rounded-full h-1"></span>
+              <span class="w-1 bg-primary rounded-full h-4"></span>
+              <span class="w-1 bg-primary-container rounded-full h-5"></span>
+              <span class="w-1 bg-primary-fixed rounded-full h-3"></span>
+              <span class="w-1 bg-outline-variant rounded-full h-1"></span>
+              <span class="w-1 bg-secondary rounded-full h-4 animate-pulse"></span>
+              <span class="w-1 bg-secondary rounded-full h-5"></span>
+              <span class="w-1 bg-secondary-container rounded-full h-2"></span>
+              <span class="w-1 bg-outline-variant rounded-full h-1"></span>
+              <span class="w-1 bg-outline-variant rounded-full h-1"></span>
+              <span class="w-1 bg-primary rounded-full h-3"></span>
+              <span class="w-1 bg-primary rounded-full h-5"></span>
+              <span class="w-1 bg-primary-fixed rounded-full h-4"></span>
+              <span class="w-1 bg-outline-variant rounded-full h-1"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Sticky Input Bar -->
+      <div class="sticky bottom-16 z-40 bg-surface-container-lowest/95 backdrop-blur-md p-margin pb-3 shadow-[0_-4px_16px_rgba(15,23,42,0.05)] border-t border-surface-container">
+        <div class="flex items-center justify-between mb-1.5 px-1">
+          <div class="flex items-center gap-1.5 text-on-surface-variant">
+            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            <span class="text-[10px] text-outline font-medium">Modo: Cardiología • Guía AHA/ACC</span>
+          </div>
+          <button class="text-[10px] text-primary font-semibold flex items-center gap-0.5 hover:underline">
+            <span>Adjuntar ECG / Foto</span>
+            <span class="material-symbols-outlined text-xs">attachment</span>
+          </button>
+        </div>
+
+        <form class="flex items-center gap-2" id="chat-form" onsubmit="sendMessage(event)">
+          <button class="w-11 h-11 shrink-0 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors active:scale-95 shadow-sm" id="voice-btn" onclick="toggleVoice()" title="Dictado por voz" type="button">
+            <span class="material-symbols-outlined text-xl">mic</span>
+          </button>
+          
+          <div class="relative flex-1 flex items-center">
+            <input class="w-full h-11 pl-3.5 pr-9 bg-surface-container-low text-on-surface placeholder:text-outline rounded-xl text-xs focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all shadow-inner" id="query-input" placeholder="Escribe tu duda médica o caso clínico..." type="text"/>
+            <button class="absolute right-2.5 text-outline hover:text-on-surface p-0.5" onclick="clearInput()" type="button">
+              <span class="material-symbols-outlined text-base">cancel</span>
+            </button>
+          </div>
+
+          <button class="w-11 h-11 shrink-0 rounded-xl bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center transition-transform active:scale-95 shadow-sm" title="Enviar consulta" type="submit">
+            <span class="material-symbols-outlined text-xl">send</span>
+          </button>
+        </form>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Bar (Unified Mobile & Desktop) -->
+  <nav class="fixed bottom-0 left-0 right-0 max-w-xl mx-auto z-50 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)] border-t border-surface-container">
+    <div class="flex items-center justify-around h-16 px-space-xs">
+      <!-- 1. Inicio -->
+      <a class="nav-link flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-primary-container font-semibold transition-colors" data-path="inicio" href="#">
+        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">space_dashboard</span>
+        <span class="nav-label text-[11px] tracking-tight">Inicio</span>
+      </a>
+
+      <!-- 2. Casos Clínicos -->
+      <a class="nav-link flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="casos" href="#">
+        <span class="material-symbols-outlined text-2xl">clinical_notes</span>
+        <span class="nav-label text-[11px] tracking-tight">Casos</span>
+      </a>
+
+      <!-- 3. Test / Cuestionarios -->
+      <a class="nav-link flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="test" href="#">
+        <span class="material-symbols-outlined text-2xl">quiz</span>
+        <span class="nav-label text-[11px] tracking-tight">Test</span>
+      </a>
+
+      <!-- 4. Repaso y Progreso -->
+      <a class="nav-link flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="repaso" href="#">
+        <span class="material-symbols-outlined text-2xl">history_edu</span>
+        <span class="nav-label text-[11px] tracking-tight">Repaso</span>
+      </a>
+
+      <!-- 5. Tutor IA -->
+      <a class="nav-link flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="tutor-ia" href="#">
+        <span class="material-symbols-outlined text-2xl">smart_toy</span>
+        <span class="nav-label text-[11px] tracking-tight">Tutor IA</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- JavaScript Controller -->
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-dim": "#d8dadc", "inverse-on-surface": "#eff1f3", "tertiary-container": "#00389a", "primary-fixed-dim": "#b6c4ff", "on-background": "#191c1e", "on-tertiary-fixed": "#00174b", "on-error-container": "#93000a", "tertiary-fixed": "#dbe1ff", "surface": "#f7f9fb", "tertiary": "#00246b", "error": "#ba1a1a", "on-tertiary-fixed-variant": "#003ea8", "inverse-primary": "#b6c4ff", "on-error": "#ffffff", "on-primary-fixed": "#00164e", "primary-container": "#1e3a8a", "inverse-surface": "#2d3133", "primary": "#00236f", "surface-container-highest": "#e0e3e5", "surface-container-lowest": "#ffffff", "on-secondary-fixed": "#002113", "on-surface": "#191c1e", "primary-fixed": "#dce1ff", "surface-tint": "#4059aa", "surface-container-low": "#f2f4f6", "secondary-container": "#6cf8bb", "on-primary-fixed-variant": "#264191", "on-tertiary-container": "#8da9ff", "surface-container-high": "#e6e8ea", "tertiary-fixed-dim": "#b4c5ff", "on-primary-container": "#90a8ff", "on-secondary-fixed-variant": "#005236", "surface-container": "#eceef0", "on-surface-variant": "#444651", "on-tertiary": "#ffffff", "secondary-fixed-dim": "#4edea3", "surface-variant": "#e0e3e5", "outline": "#757682", "surface-bright": "#f7f9fb", "on-secondary": "#ffffff", "secondary-fixed": "#6ffbbe", "on-primary": "#ffffff", "error-container": "#ffdad6", "on-secondary-container": "#00714d", "background": "#f7f9fb", "secondary": "#006c49", "outline-variant": "#c5c5d3" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"] }, fontSize: { "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }] } } } }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="MedPulse Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Uc-J0GhivImqWd3gNQPpLO2Ms-lhNldiABe8dTTlUlOMmaKtm4ehukATOKkF9lbR41CYRxhIplCPt4ONi0yQtBTYVECJmFB6FCQZWGP6niUoSY-uRKXri0LmX4zuOO8wL8gEgo52_IvTVqKAK_eH5OgvdbeBzCiwUB5LoskvgI4f8k-cnLEZrP7kgz690rmG11-XVbFXhBtDm-yjASVvbZZ_MEyUfmx98FNsJemtnC"/><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-primary-container leading-none truncate">MedPulse</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Casos</span></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-error-container text-on-error-container shadow-[0_1px_4px_rgba(0,0,0,0.02)]"><span class="material-symbols-outlined text-lg leading-none text-error">local_fire_department</span><span class="font-label-sm text-label-sm">14 días</span></div><div class="relative flex items-center justify-center p-0.5 rounded-full bg-secondary-container"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6bgBYtWpG_w6YefxVbii5GpCI7BoGVl07KkWeH4NacRQXV7r6SSJ-J3EmG_61D0BitQK9aHfcxF6kiebU6iZDuShtnz9EG1dE6Y_aV_C3LDjUg9zXu3KtOiIyYvEsRVi1Em13uolsU5HN91xeg1FRTJ85lvUG2M-obHsVsynAmauAPLwX0w8G0Er2T3U9VgkQCziTqeajUzoRXFaWcveBM55NU1aVi14NMjh-ep0"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-surface"><div class="flex flex-col w-full pb-6">
+<!-- Specialty Chips Carousel -->
+<section class="w-full pt-3 pb-2 px-margin">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<button class="specialty-filter active px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md shrink-0 shadow-sm transition-all duration-150 transform active:scale-95 flex items-center gap-1.5" data-filter="all">
+<span class="material-symbols-outlined text-base">apps</span>
+<span>Todos</span>
+</button>
+<button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="urgencias">
+<span class="material-symbols-outlined text-base text-error">emergency</span>
+<span>Urgencias</span>
+</button>
+<button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="cardiologia">
+<span class="material-symbols-outlined text-base text-primary">cardiology</span>
+<span>Cardiología</span>
+</button>
+<button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="neurologia">
+<span class="material-symbols-outlined text-base text-tertiary">neurology</span>
+<span>Neurología</span>
+</button>
+<button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="pediatria">
+<span class="material-symbols-outlined text-base text-secondary">child_care</span>
+<span>Pediatría</span>
+</button>
+<button class="specialty-filter px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md shrink-0 transition-all duration-150 hover:bg-surface-container-highest active:scale-95 flex items-center gap-1.5" data-filter="infecciosas">
+<span class="material-symbols-outlined text-base text-on-secondary-container">microbiology</span>
+<span>Infecciosas</span>
+</button>
+</div>
+</section>
+<!-- Active Case Banner -->
+<section class="px-margin mt-2">
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary-container to-tertiary text-on-primary p-space-md shadow-md">
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-surface-container-lowest/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/15 backdrop-blur-md px-2.5 py-1 rounded-full text-on-primary font-label-sm text-label-sm tracking-wide uppercase">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span>
+<span>En Consulta Activa</span>
+</div>
+<span class="font-label-md text-label-md text-primary-fixed-dim">ID: #142</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-primary leading-tight line-clamp-2">
+            Varón de 45 años con cefalea intensa holocraneal en trueno y rigidez de nuca
+          </h2>
+<p class="mt-1 font-body-sm text-body-sm text-primary-fixed flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>Última toma de decisiones hace 20 min</span>
+</p>
+</div>
+<!-- Progress Track -->
+<div class="bg-surface-container-lowest/10 rounded-xl p-2.5 backdrop-blur-sm">
+<div class="flex items-center justify-between text-on-primary font-label-sm text-label-sm mb-1.5">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary-fixed">biotech</span>
+<span>Fase 2 de 4: Interpretación de Neuroimagen (TC)</span>
+</span>
+<span class="font-bold text-secondary-fixed">50%</span>
+</div>
+<div class="w-full bg-surface-container-lowest/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 50%;"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 gap-2">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-lowest/10 text-on-primary">
+<span class="material-symbols-outlined text-base">radiology</span>
+</span>
+<div class="text-left">
+<span class="block font-label-sm text-label-sm text-primary-fixed">Sospecha</span>
+<span class="font-label-md text-label-md text-on-primary leading-none">HSA espontánea</span>
+</div>
+</div>
+<button class="inline-flex items-center justify-center gap-1.5 px-4 h-10 rounded-xl bg-secondary-container text-on-secondary-container font-label-lg text-label-lg shadow-sm hover:brightness-105 active:scale-95 transition-all">
+<span>Continuar</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section Header & Filter Stats -->
+<section class="px-margin mt-6 flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Casos Disponibles</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Simulador con retroalimentación bayesiana inmediata</p>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined text-base text-secondary">verified</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">4 listos</span>
+</div>
+</section>
+<!-- Interactive Clinical Cases List -->
+<section class="px-margin mt-3 flex flex-col gap-3.5" id="cases-container">
+<!-- Case 1: Pediatria -->
+<article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="pediatria">
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed/30 text-on-secondary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">child_care</span>
+            Pediatría
+          </span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-secondary">signal_cellular_alt_2_bar</span>
+            Media
+          </span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+<span>84% éxito</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface leading-snug">
+          Lactante de 8 meses con fiebre alta y exantema súbito post-defervescencia
+        </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Presenta caída térmica abrupta tras 72h con brote eritematoso rosado máculo-papular en tronco que respeta cara.
+        </p>
+</div>
+<!-- Vital Signs Triage Badge Bar -->
+<div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">FC</span>
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs text-error">favorite</span>
+            142 lpm
+          </span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PA</span>
+<span class="font-label-md text-label-md text-on-surface">85/55</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">SatO₂</span>
+<span class="font-label-md text-label-md text-secondary">98%</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Temp</span>
+<span class="font-label-md text-label-md text-error">37.4°C</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base">timer</span>
+<span>12 min aprox.</span>
+</div>
+<button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:brightness-110 active:scale-95 transition-all">
+<span>Iniciar Caso</span>
+<span class="material-symbols-outlined text-base">play_arrow</span>
+</button>
+</div>
+</article>
+<!-- Case 2: Neurología -->
+<article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="neurologia">
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">neurology</span>
+            Neurología
+          </span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">priority_high</span>
+            Avanzada
+          </span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-error font-bold">
+<span class="material-symbols-outlined text-sm">psychology_alt</span>
+<span>62% éxito</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface leading-snug">
+          Mujer de 34 años con debilidad muscular progresiva y ptosis vespertina
+        </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Diplopía fluctuante al final de la jornada laboral, dificultad para masticar y test de estimulación repetitiva pendiente.
+        </p>
+</div>
+<!-- Vital Signs Triage Badge Bar -->
+<div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">FC</span>
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs text-error">favorite</span>
+            76 lpm
+          </span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PA</span>
+<span class="font-label-md text-label-md text-on-surface">118/72</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">SatO₂</span>
+<span class="font-label-md text-label-md text-secondary">99%</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Cap. Vital</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Normal</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base">timer</span>
+<span>18 min aprox.</span>
+</div>
+<button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:brightness-110 active:scale-95 transition-all">
+<span>Iniciar Caso</span>
+<span class="material-symbols-outlined text-base">play_arrow</span>
+</button>
+</div>
+</article>
+<!-- Case 3: Cardiología -->
+<article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="cardiologia">
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed-dim/40 text-on-primary-fixed-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">cardiology</span>
+            Cardiología
+          </span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-primary">equalizer</span>
+            Intermedia
+          </span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+<span>79% éxito</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface leading-snug">
+          Hombre de 68 años con disnea progresiva y edemas en miembros inferiores
+        </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Ortopnea de 3 almohadas, ingurgitación yugular patológica a 45° y crepitantes bibasales con ritmo de galope R3 audible.
+        </p>
+</div>
+<!-- Vital Signs Triage Badge Bar -->
+<div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">FC</span>
+<span class="font-label-md text-label-md text-error flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs">favorite</span>
+            104 lpm
+          </span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PA</span>
+<span class="font-label-md text-label-md text-error">162/95</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">SatO₂</span>
+<span class="font-label-md text-label-md text-error">91% amb</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">FR</span>
+<span class="font-label-md text-label-md text-error">24 rpm</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base">timer</span>
+<span>15 min aprox.</span>
+</div>
+<button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:brightness-110 active:scale-95 transition-all">
+<span>Iniciar Caso</span>
+<span class="material-symbols-outlined text-base">play_arrow</span>
+</button>
+</div>
+</article>
+<!-- Case 4: Cirugía / Urgencias -->
+<article class="case-card bg-surface-container-lowest rounded-2xl p-space-md shadow-sm transition-all duration-200 active:scale-[0.99] flex flex-col gap-3" data-category="urgencias">
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">local_hospital</span>
+            Urgencias
+          </span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">stairs</span>
+            Principiante
+          </span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+<span>91% éxito</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface leading-snug">
+          Joven de 22 años con dolor en fosa ilíaca derecha y signo de Blumberg positivo
+        </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Cronología apendicular clásica de Murphy: inicio periumbilical irradiado a FID con náuseas y defensa abdominal involuntaria.
+        </p>
+</div>
+<!-- Vital Signs Triage Badge Bar -->
+<div class="bg-surface-container-low rounded-xl p-2 flex items-center justify-between gap-1">
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">FC</span>
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs text-error">favorite</span>
+            98 lpm
+          </span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PA</span>
+<span class="font-label-md text-label-md text-on-surface">122/78</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">SatO₂</span>
+<span class="font-label-md text-label-md text-secondary">99%</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Temp</span>
+<span class="font-label-md text-label-md text-error">38.1°C</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base">timer</span>
+<span>10 min aprox.</span>
+</div>
+<button class="inline-flex items-center justify-center gap-1 px-4 h-9 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:brightness-110 active:scale-95 transition-all">
+<span>Iniciar Caso</span>
+<span class="material-symbols-outlined text-base">play_arrow</span>
+</button>
+</div>
+</article>
+</section>
+<!-- Empty state fallback when filtering has no items -->
+<div class="hidden px-margin py-10 flex flex-col items-center justify-center text-center" id="empty-state">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-3xl">clinical_notes</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Sin casos en esta categoría</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs mt-1">Explora otra especialidad o selecciona 'Todos' para ver casos de razonamiento clínico disponibles.</p>
+</div>
+<!-- Interactive script for filter chips -->
+<script>
+    (function() {
+      const filters = document.querySelectorAll('.specialty-filter');
+      const cards = document.querySelectorAll('.case-card');
+      const emptyState = document.getElementById('empty-state');
+
+      filters.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filters.forEach(b => {
+            b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+            b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+          });
+
+          btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+          btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+
+          const category = btn.getAttribute('data-filter');
+          let visibleCount = 0;
+
+          cards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (category === 'all' || cardCat === category) {
+              card.style.display = 'flex';
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          if (emptyState) {
+            emptyState.style.display = visibleCount === 0 ? 'flex' : 'none';
+          }
+        });
+      });
+    })();
+  </script>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-label-md"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="inicio" href="#"><span class="material-symbols-outlined text-2xl">space_dashboard</span><span class="font-label-sm text-label-sm tracking-tight">Inicio</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 transition-colors text-primary-container font-label-md" data-path="casos" href="#"><span class="material-symbols-outlined text-2xl">clinical_notes</span><span class="font-label-sm text-label-sm tracking-tight">Casos</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="test" href="#"><span class="material-symbols-outlined text-2xl">quiz</span><span class="font-label-sm text-label-sm tracking-tight">Test</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="repaso" href="#"><span class="material-symbols-outlined text-2xl">history_edu</span><span class="font-label-sm text-label-sm tracking-tight">Repaso</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="tutor-ia" href="#"><span class="material-symbols-outlined text-2xl">smart_toy</span><span class="font-label-sm text-label-sm tracking-tight">Tutor IA</span></a></div></nav></body></html>

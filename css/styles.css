@@ -1,0 +1,49 @@
+/* MedPulse - Clinical Precision & Active Recall Styles */
+
+/* Safe area padding for mobile devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Hide scrollbars for clean mobile feel */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Base resets & tactile feel */
+body {
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* View transitions */
+.view-screen {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.view-screen.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Ripple / tactile effect */
+button:active {
+  transform: scale(0.98);
+}
